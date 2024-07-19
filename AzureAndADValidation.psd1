@@ -116,7 +116,7 @@ PrivateData = @{
         # ProjectUri = 'https://github.com/dseelinger/AzureAndADValidation'
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+        # IconUri = 'https://raw.githubusercontent.com/dseelinger/AzureAndADValidation/main/doc/assets/Icon.ico'
 
         # ReleaseNotes of this module
         # ReleaseNotes = ''
