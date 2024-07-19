@@ -19,32 +19,31 @@
 
 .RELEASE NOTES
     1.0.0 - Initial release with:
-    * Confirm-ADComputer
-    * Confirm-ADOU
-    * Confirm-ADUser
-    * Confirm-ADGroup
-    * Confirm-AzApplicationGroup
-    * Confirm-AzDisk
-    * Confirm-AzHostPool
-    * Confirm-AzNsgRule
-    * Confirm-AzPermission
-    * Confirm-AzResourceGroup
-    * Confirm-AzureCliInstalled
-    * Confirm-AzKeyVault
-    * Confirm-AzLogAnalyticsWorkspace
-    * Confirm-AzNic
-    * Confirm-AzStorageAccount
-    * Confirm-AzVm
-    * Confirm-AzWvdWorkspace
-    * Confirm-BicepSuccessfullyDeployed
-    * Confirm-MappedDrive
-    * Confirm-SecurityGroup
-    * Confirm-SecurityGroupMember
+    - Confirm-ADComputer
+    - Confirm-ADOU
+    - Confirm-ADUser
+    - Confirm-ADGroup
+    - Test-ADGroupMembership
+    - Test-MappedDrive
+    - Confirm-AzApplicationGroup
+    - Confirm-AzDisk
+    - Confirm-AzHostPool
+    - Confirm-AzNsgRule
+    - Confirm-AzPermission
+    - Confirm-AzResourceGroup
+    - Confirm-AzureCliInstalled
+    - Confirm-AzKeyVault
+    - Confirm-AzLogAnalyticsWorkspace
+    - Confirm-AzNic
+    - Confirm-AzStorageAccount
+    - Confirm-AzVm
+    - Confirm-AzWvdWorkspace
+    - Test-AzResourceGroupDeploymentTest
 
 .EXAMPLE
     Import-Module .\AzureAndADValidation.psm1
-    AzApplicationGroupShouldExist -AppId "62975602-70e3-4f0d-91df-1abe9266bec9"
-    AzDiskShouldExist -DiskName "test-disk-01" -ResourceGroupName "test-rg-01"
+    Confirm-AzApplicationGroup -AppId "62975602-70e3-4f0d-91df-1abe9266bec9"
+    Confirm-AzDisk -DiskName "test-disk-01" -ResourceGroupName "test-rg-01"
 
 .LINK
     https://github.com/dseelinger/AzureAndADValidation
@@ -53,31 +52,32 @@
 
 # MyModule.psm1
 
-. $PSScriptRoot\Functions\Confirm-ADComputer.ps1
-. $PSScriptRoot\Functions\Confirm-ADOU.ps1
-. $PSScriptRoot\Functions\Confirm-ADUser.ps1
-. $PSScriptRoot\Functions\Confirm-ADGroup.ps1
-. $PSScriptRoot\Functions\Confirm-AzApplicationGroup.ps1
-. $PSScriptRoot\Functions\Confirm-AzDisk.ps1
-. $PSScriptRoot\Functions\Confirm-AzHostPool.ps1
-. $PSScriptRoot\Functions\Confirm-AzNsgRule.ps1
-. $PSScriptRoot\Functions\Confirm-AzPermission.ps1
-. $PSScriptRoot\Functions\Confirm-AzResourceGroup.ps1
-. $PSScriptRoot\Functions\Confirm-AzureCliInstalled.ps1
-. $PSScriptRoot\Functions\Confirm-AzKeyVault.ps1
-. $PSScriptRoot\Functions\Confirm-AzLogAnalyticsWorkspace.ps1
-. $PSScriptRoot\Functions\Confirm-AzNic.ps1
-. $PSScriptRoot\Functions\Confirm-AzStorageAccount.ps1
-. $PSScriptRoot\Functions\Confirm-AzVm.ps1
-. $PSScriptRoot\Functions\Confirm-AzWvdWorkspace.ps1
-. $PSScriptRoot\Functions\Confirm-BicepSuccessfullyDeployed.ps1
-. $PSScriptRoot\Functions\Confirm-MappedDrive.ps1
-. $PSScriptRoot\Functions\Confirm-SecurityGroup.ps1
-. $PSScriptRoot\Functions\Confirm-SecurityGroupMember.ps1
+. $PSScriptRoot\Functions\AD\Confirm-ADComputer.ps1
+. $PSScriptRoot\Functions\AD\Confirm-ADOU.ps1
+. $PSScriptRoot\Functions\AD\Confirm-ADUser.ps1
+. $PSScriptRoot\Functions\AD\Confirm-ADGroup.ps1
+. $PSScriptRoot\Functions\AD\Test-ADGroupMembership.ps1
+. $PSScriptRoot\Functions\AD\Test-MappedDrive.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzApplicationGroup.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzDisk.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzHostPool.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzNsgRule.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzPermission.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzResourceGroup.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzureCliInstalled.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzKeyVault.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzLogAnalyticsWorkspace.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzNic.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzStorageAccount.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzVm.ps1
+# . $PSScriptRoot\Functions\Azure\Confirm-AzWvdWorkspace.ps1
+# . $PSScriptRoot\Functions\Azure\Test-AzResourceGroupDeploymentTest.ps1
 
 # Export the functions you want to make available
-Export-ModuleMember -Function Confirm-ADComputer, Confirm-ADOU, Confirm-ADUser, Confirm-ADGroup, Confirm-AzApplicationGroup `
-    , Confirm-AzDisk, Confirm-AzHostPool, Confirm-AzNsgRule, Confirm-AzPermission, Confirm-AzResourceGroup `
-    , Confirm-AzureCliInstalled, Confirm-AzKeyVault, Confirm-AzLogAnalyticsWorkspace, Confirm-AzNic `
-    , Confirm-AzStorageAccount, Confirm-AzVm, Confirm-AzWvdWorkspace, Confirm-BicepSuccessfullyDeployed `
-    , Confirm-MappedDrive, Confirm-SecurityGroup, Confirm-SecurityGroupMember
+Export-ModuleMember -Function Confirm-ADComputer, Confirm-ADOU, Confirm-ADUser, Confirm-ADGroup, Test-MappedDrive `
+    , Test-ADGroupMembership
+    
+    # , Confirm-AzApplicationGroup, Confirm-AzDisk, Confirm-AzHostPool, Confirm-AzNsgRule `
+    # , Confirm-AzPermission, Confirm-AzResourceGroup, Confirm-AzureCliInstalled, Confirm-AzKeyVault `
+    # , Confirm-AzLogAnalyticsWorkspace, Confirm-AzNic, Confirm-AzStorageAccount, Confirm-AzVm, Confirm-AzWvdWorkspace `
+    # , Test-AzResourceGroupDeploymentTest
