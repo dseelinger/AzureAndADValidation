@@ -29,6 +29,7 @@ function Test-GroupMembership {
     begin {
     }
     process {
+        throw "Function not implemented yet."
     }
     end {
     }

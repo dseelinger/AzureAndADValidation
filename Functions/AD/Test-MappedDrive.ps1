@@ -42,6 +42,7 @@ function Test-MappedDrive {
     begin {
     }
     process {
+        throw "Function not implemented yet."
     }
     end {
     }

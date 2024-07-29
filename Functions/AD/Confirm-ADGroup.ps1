@@ -24,6 +24,7 @@ function Confirm-ADGroup {
     begin {
     }
     process {
+        throw "Function not implemented yet."
     }
     end {
     }

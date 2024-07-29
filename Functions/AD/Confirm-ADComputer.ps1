@@ -24,6 +24,7 @@ function Confirm-ADComputer {
     begin {
     }
     process {
+        throw "Function not implemented yet."
     }
     end {
     }
