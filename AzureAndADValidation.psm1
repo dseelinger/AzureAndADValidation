@@ -83,4 +83,9 @@ Export-ModuleMember -Function Confirm-ADComputer, Confirm-ADOU, Confirm-ADUser, 
     # , Test-AzResourceGroupDeploymentTest
 
 
-# TODO: Publish module in the PowerShell Gallery (requires creation of a PowerShell Gallery account)
+# TODO 000: Create a GitHub Self-Hosted Runner with access to Active Directory so that we are able to run integration tests
+#           with GitHub Actions. Until then we are limited to Unit Tests, and can only run Integration Tests locally,
+#           assuming that AD is accessible from the dev environment.
+# TODO 001: Publish module in the PowerShell Gallery (requires creation of a PowerShell Gallery account)
+# TODO 002: Create GitHubActions to exercise
+# TODO 003: Tag tests as Integration tests or unit tests
