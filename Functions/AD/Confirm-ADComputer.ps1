@@ -23,9 +23,15 @@ function Confirm-ADComputer {
         [string]$Name
     )
     begin {
+        Import-Module ActiveDirectory
     }
     process {
-        throw "Function not implemented yet."
+        try {
+            Get-ADComputer -Identity $name -ErrorAction Stop | Out-Null
+            $true
+        } catch {
+            $false
+        }
     }
     end {
     }

@@ -81,3 +81,6 @@ Export-ModuleMember -Function Confirm-ADComputer, Confirm-ADOU, Confirm-ADUser, 
     # , Confirm-AzPermission, Confirm-AzResourceGroup, Confirm-AzureCliInstalled, Confirm-AzKeyVault `
     # , Confirm-AzLogAnalyticsWorkspace, Confirm-AzNic, Confirm-AzStorageAccount, Confirm-AzVm, Confirm-AzWvdWorkspace `
     # , Test-AzResourceGroupDeploymentTest
+
+
+# TODO: Publish module in the PowerShell Gallery (requires creation of a PowerShell Gallery account)
