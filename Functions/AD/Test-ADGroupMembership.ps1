@@ -1,4 +1,4 @@
-function Test-GroupMembership {
+function Test-ADGroupMembership {
     <#
     .SYNOPSIS
     Tests to see if one AD object is in the [member] property of an AD Group.
