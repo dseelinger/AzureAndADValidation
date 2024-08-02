@@ -7,7 +7,7 @@ function Confirm-ADUser {
     The Confirm-ADUser function takes a user name as input and returns $true if it is found, otherwise returns $false.
 
     .PARAMETER Name
-    The name of the AD User to look for.
+    The username of the AD User to look for.
 
     .EXAMPLE
     Confirm-ADUser -Name "MySAMAccountName01"
@@ -22,9 +22,15 @@ function Confirm-ADUser {
         [string]$Name
     )
     begin {
+        Import-Module ActiveDirectory
     }
     process {
-        throw "Function not implemented yet."
+        try {
+            Get-ADUser -Identity $Name -ErrorAction Stop | Out-Null
+            $true
+        } catch {
+            $false
+        }
     }
     end {
     }
