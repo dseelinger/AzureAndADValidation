@@ -29,7 +29,7 @@ Describe 'Confirm-ADOU Integration Tests' -Tag 'Integration', 'AD' {
             $fakeOUName = 'thisOUDoesNotExist'
 
             # Act
-            $result = Confirm-ADOU -Name $fakeOUName
+            $result = Confirm-ADOU -OUDN $fakeOUName
 
             # Assert
             $result | Should -BeFalse
@@ -49,7 +49,7 @@ Describe 'Confirm-ADOU Unit Tests' -Tag 'Unit', 'AD' {
             function Get-ADOrganizationalUnit {}
 
             # Act
-            $result = Confirm-ADOU -Name $realOUName
+            $result = Confirm-ADOU -OUDN $realOUName
 
             # Assert
             $result | Should -BeTrue
@@ -63,7 +63,7 @@ Describe 'Confirm-ADOU Unit Tests' -Tag 'Unit', 'AD' {
             function Get-ADOrganizationalUnit { throw 'Exception'}
 
             # Act
-            $result = Confirm-ADOU -Name $fakeOUName
+            $result = Confirm-ADOU -OUDN $fakeOUName
 
             # Assert
             $result | Should -BeFalse
