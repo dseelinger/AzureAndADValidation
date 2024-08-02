@@ -4,14 +4,15 @@ function Confirm-ADOU {
     Tests for the existence of an AD Organizational Unit (OU) object in Active Directory.
 
     .DESCRIPTION
-    The Confirm-ADOU function takes an OU name as input and returns $true if it is found, otherwise returns $false.
+    The Confirm-ADOU function takes an LDAP Path for an OU as input and returns $true if the OU is found, otherwise 
+    returns $false.
 
-    .PARAMETER Name
-    The name of the AD OU to look for.
+    .PARAMETER OUDN
+    The LDAP path (aka OU's "Distinguished Name" (DN)) of the OU object to look for.
 
     .EXAMPLE
-    Confirm-ADOU -Name "MyOU01"
-    Returns $true or $false
+    Confirm-ADOU -OUDN "OU=YourOU,DC=YourDomain,DC=com"
+    Returns $true if found or $false if not found
 
     .NOTES
     Author: Doug Seelinger
@@ -19,12 +20,18 @@ function Confirm-ADOU {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
-        [string]$Name
+        [string]$OUDN
     )
     begin {
+        Import-Module ActiveDirectory
     }
     process {
-        throw "Function not implemented yet."
+        try {
+            Get-ADOrganizationalUnit -Identity $OUDN -ErrorAction Stop | Out-Null
+            $true
+        } catch {
+            $false
+        }
     }
     end {
     }
