@@ -10,7 +10,7 @@ function Test-ADGroupMembership {
     The name of the AD Group to look for.
 
     .PARAMETER MemberName
-    The name of the member to search for within the group.
+    The username of the member to search for within the group.
 
     .EXAMPLE
     Test-GroupMembership -GroupName "MyGroup01" -MemberName "MySAMAccountName01"
@@ -27,9 +27,21 @@ function Test-ADGroupMembership {
         [string]$MemberName
     )
     begin {
+        Import-Module ActiveDirectory
     }
     process {
-        throw "Function not implemented yet."
+        try {
+            $groupMembers = Get-ADGroupMember -Identity $GroupName -ErrorAction Stop
+            $isMember = $groupMembers | Where-Object { $_.SamAccountName -eq $MemberName }
+
+            if ($isMember) {
+                $true
+            } else {
+                $false
+            }
+        } catch {
+            $false
+        }
     }
     end {
     }
