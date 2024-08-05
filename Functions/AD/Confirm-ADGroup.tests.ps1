@@ -3,7 +3,7 @@ BeforeAll {
 
 }
 
-Describe 'Confirm-ADGroup Integration Tests' -Tag 'Integration', 'AD' {
+Describe 'Confirm-ADGroup Integration Tests' -Tag 'Integration', 'AD', 'AD-Integration' {
     Context 'When the Group exists' {
         It 'returns $true' {
             # Arrange

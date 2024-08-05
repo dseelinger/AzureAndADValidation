@@ -27,7 +27,7 @@ BeforeAll {
     }
 }
 
-Describe 'Test-ADGroupMembership Integration Tests' -Tag 'Integration', 'AD' {
+Describe 'Test-ADGroupMembership Integration Tests' -Tag 'Integration', 'AD', 'AD-Integration' {
     Context 'When the User is a member of the group' {
         It 'returns $true' {
             # Arrange

@@ -1,9 +1,8 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-ADUser.ps1
-
 }
 
-Describe 'Confirm-ADUser Integration Tests' -Tag 'Integration', 'AD' {
+Describe 'Confirm-ADUser Integration Tests' -Tag 'Integration', 'AD', 'AD-Integration' {
     Context 'When the User exists' {
         It 'returns $true' {
             # Arrange

@@ -2,7 +2,7 @@ BeforeAll {
     . $PSScriptRoot\Confirm-ADComputer.ps1
 }
 
-Describe 'Confirm-ADComputer Integration Tests' -Tag 'Integration', 'AD' {
+Describe 'Confirm-ADComputer Integration Tests' -Tag 'Integration', 'AD', 'AD-Integration' {
     Context 'When the computer exists' {
         It 'returns $true' {
             # Arrange

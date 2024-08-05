@@ -9,7 +9,7 @@ BeforeAll {
     }
 }
 
-Describe 'Confirm-ADOU Integration Tests' -Tag 'Integration', 'AD' {
+Describe 'Confirm-ADOU Integration Tests' -Tag 'Integration', 'AD', 'AD-Integration' {
     Context 'When the OU exists' {
         It 'returns $true' {
             # Arrange
