@@ -31,7 +31,7 @@ Describe 'Confirm-AzApplicationGroup Integration Tests' -Tag 'Integration', 'Azu
         }
     }
 
-    Context 'When the User does not exist' {
+    Context 'When the Application Group does not exist' {
         It 'returns $false' {
             # Act
             $result = Confirm-AzApplicationGroup -ApplicationGroupName $fakeAppGroupName -ResourceGroupName $rgName
@@ -47,6 +47,9 @@ Describe 'Confirm-AzApplicationGroup Integration Tests' -Tag 'Integration', 'Azu
 }
 
 Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
+    BeforeAll {
+        function Get-AzContext { return $true }
+    }
     Context 'When the Application Group exists' {
         It 'returns $true' {
             # Arrange
@@ -60,7 +63,7 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
         }
     }
 
-    Context 'When the User does not exist' {
+    Context 'When the Application Group does not exist' {
         It 'returns $false' {
             # Arrange
             function Get-AzWvdApplicationGroup { return $null }

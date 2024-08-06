@@ -11,7 +11,7 @@ function Confirm-AzApplicationGroup {
     The name of the Windows Virtualization ApplicationGroup to look for.
 
     .PARAMETER ResourceGroupName
-    The name of the Windows Virtualization ApplicationGroup to look for.
+    The name of the Resource Group that the ApplicationGroup is supposed to be in.
 
     .EXAMPLE
     Confirm-AzApplicationGroup -Name "MyWvdAppGroup"
