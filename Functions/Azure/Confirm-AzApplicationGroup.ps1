@@ -28,6 +28,7 @@ function Confirm-AzApplicationGroup {
         [string]$ResourceGroupName
     )
     begin {
+        Import-Module Az.Accounts
         Import-Module Az.DesktopVirtualization
         if (-not (Get-AzContext)) {
             Connect-AzAccount

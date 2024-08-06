@@ -28,6 +28,7 @@ function Confirm-AzDisk {
         [string]$ResourceGroupName
     )
     begin {
+        Import-Module Az.Accounts
         Import-Module Az.Compute
         if (-not (Get-AzContext)) {
             Connect-AzAccount
