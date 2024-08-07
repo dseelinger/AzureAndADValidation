@@ -66,6 +66,10 @@ RequiredModules = @(
         ModuleVersion = '8.1.0'
     },
     @{
+        ModuleName = 'Az.Network'
+        ModuleVersion = '12.2.0'
+    },
+    @{
         ModuleName = 'Az.DesktopVirtualization'
         ModuleVersion = '4.3.1'
     }
@@ -96,7 +100,8 @@ FunctionsToExport = @(
     'Test-ADGroupMembership',
     'Confirm-AzApplicationGroup',
     'Confirm-AzDisk',
-    'Confirm-AzHostPool'
+    'Confirm-AzHostPool',
+    'Confirm-AzNsgRule'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.

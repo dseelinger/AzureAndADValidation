@@ -5,7 +5,7 @@ BeforeAll {
 
 Describe 'Test-MappedDrive Integration Tests' -Tag 'Integration' {
     BeforeAll {
-        # Arrange
+        # Arrange - Create a mapped drive
         $driveLetter = 'W'
         $localPath = 'C:\Windows'
         New-PSDrive -Name $driveLetter -PSProvider FileSystem -Root $localPath | Out-Null

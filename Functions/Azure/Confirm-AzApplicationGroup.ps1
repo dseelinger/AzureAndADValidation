@@ -29,19 +29,20 @@ function Confirm-AzApplicationGroup {
     )
     begin {
         Import-Module Az.Accounts
-        Import-Module Az.DesktopVirtualization
+        AzNetworkSecurityGroup
         if (-not (Get-AzContext)) {
             Connect-AzAccount
         }
     }
     process {
-        try {
-            $appGroup = Get-AzWvdApplicationGroup -Name $ApplicationGroupName -ResourceGroupName $ResourceGroupName `
-                -ErrorAction Stop
-            return $null -ne $appGroup
-        } catch {
-            return $false
-        }
+        return $true
+        # try {
+        #     $appGroup = Get-AzWvdApplicationGroup -Name $ApplicationGroupName -ResourceGroupName $ResourceGroupName `
+        #         -ErrorAction Stop
+        #     return $null -ne $appGroup
+        # } catch {
+        #     return $false
+        # }
     }
     end {
     }

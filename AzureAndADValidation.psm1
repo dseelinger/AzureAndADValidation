@@ -61,7 +61,7 @@
 . $PSScriptRoot\Functions\Azure\Confirm-AzApplicationGroup.ps1
 . $PSScriptRoot\Functions\Azure\Confirm-AzDisk.ps1
 . $PSScriptRoot\Functions\Azure\Confirm-AzHostPool.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzNsgRule.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzNsgRule.ps1
 # . $PSScriptRoot\Functions\Azure\Confirm-AzPermission.ps1
 # . $PSScriptRoot\Functions\Azure\Confirm-AzResourceGroup.ps1
 # . $PSScriptRoot\Functions\Azure\Confirm-AzureCliInstalled.ps1
@@ -75,9 +75,7 @@
 
 # Export the functions you want to make available
 Export-ModuleMember -Function Confirm-ADComputer, Confirm-ADOU, Confirm-ADUser, Confirm-ADGroup, Test-MappedDrive `
-    , Test-ADGroupMembership, Confirm-AzApplicationGroup, Confirm-AzDisk, Confirm-AzHostPool
-    
-    # Confirm-AzNsgRule `
+    , Test-ADGroupMembership, Confirm-AzApplicationGroup, Confirm-AzDisk, Confirm-AzHostPool, Confirm-AzNsgRule `
     # , Confirm-AzPermission, Confirm-AzResourceGroup, Confirm-AzureCliInstalled, Confirm-AzKeyVault `
     # , Confirm-AzLogAnalyticsWorkspace, Confirm-AzNic, Confirm-AzStorageAccount, Confirm-AzVm, Confirm-AzWvdWorkspace `
     # , Test-AzResourceGroupDeploymentTest

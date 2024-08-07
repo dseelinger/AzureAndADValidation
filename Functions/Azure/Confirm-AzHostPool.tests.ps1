@@ -9,7 +9,7 @@ BeforeAll {
 
 Describe 'Confirm-AzHostPool Integration Tests' -Tag 'Integration', 'Azure' {
     BeforeAll {
-        # Arrange - Create a Host Pool and Application Group to test against
+        # Arrange - Create a HostPool to test against
         New-AzResourceGroup -Name $rgName -Location $location | Out-Null
         New-AzWvdHostPool -ResourceGroupName $rgName -Name $goodHostPoolName -Location $location -HostPoolType "Pooled" `
             -LoadBalancerType "BreadthFirst" -MaxSessionLimit 10 -PreferredAppGroupType 'Desktop'| Out-Null

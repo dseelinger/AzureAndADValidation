@@ -9,15 +9,10 @@ BeforeAll {
 
 Describe 'Confirm-AzDisk Integration Tests' -Tag 'Integration', 'Azure' {
     BeforeAll {
-        # Arrange - Create a Host Pool and Application Group to test against
+        # Arrange - Create a Disk to test against
         New-AzResourceGroup -Name $rgName -Location $location | Out-Null
-
         $diskSizeGB = 128
-        
-        # Create a disk configuration object
         $diskConfig = New-AzDiskConfig -Location $location -CreateOption Empty -DiskSizeGB $diskSizeGB
-        
-        # Create the disk
         New-AzDisk -ResourceGroupName $rgName -DiskName $testDiskName -Disk $diskConfig | Out-Null
     }
     
