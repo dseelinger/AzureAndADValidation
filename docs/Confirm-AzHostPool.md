@@ -5,74 +5,56 @@ online version:
 schema: 2.0.0
 ---
 
-# Test-MappedDrive
+# Confirm-AzHostPool
 
 ## SYNOPSIS
-Tests for the presence of a specific mapped drive on the current computer for the current user.
+Tests for the existence of a HostPool in Azure.
 
 ## SYNTAX
 
 ```
-Test-MappedDrive [[-Path] <String>] [[-DriveLetter] <String>] [-ProgressAction <ActionPreference>]
+Confirm-AzHostPool [-HostPoolName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Test-MappedDrive function takes a Path (UNC or local) or mapped drive letter (or both) and tests whether that mapped drive 
-exists on the current computer for the currently logged-in user or not.
-Either one or both parameters must be present.
+The Confirm-AzHostPool function takes the name of an Azure HostPool as input and returns $true if it is found,
+otherwise returns $false.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Test-MappedDrive -Path "\\someMachine\c$\some\path"
+Confirm-AzHostPool -Name "MyHostPool01"
+Returns $true or $false
 ```
-
-Returns $true if any mapped drive with that path is found on the current machine.
-
-### EXAMPLE 2
-```
-Test-MappedDrive -DriveLetter "Q:"
-```
-
-Returns $true if any mapped drive with that drive letter is found on the current machine.
-Drive letter may optionally 
-omit the colon (:).
-
-### EXAMPLE 3
-```
-Test-MappedDrive -Path "\\someMachine\c$\some\path" -DriveLetter "Q:"
-```
-
-Returns $true if any mapped drive with that path and drive letter is found on the current machine.
 
 ## PARAMETERS
 
-### -Path
-The Path for the mapped drive
+### -HostPoolName
+The name of the HostPool to look for.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -DriveLetter
-The Drive Letter for the mapped drive
+### -ResourceGroupName
+The name of the Resource Group that the HostPool is supposed to be in.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 2
 Default value: None
 Accept pipeline input: False

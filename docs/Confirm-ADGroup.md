@@ -17,7 +17,7 @@ Confirm-ADGroup [-Name] <String> [-ProgressAction <ActionPreference>] [<CommonPa
 ```
 
 ## DESCRIPTION
-The Confirm-ADGroup function takes a group name as input and returns $true if it is found, otherwise returns $false.
+The Confirm-ADGroup function takes a group name as input and returns $true if it is found, otherwise it returns $false.
 
 ## EXAMPLES
 

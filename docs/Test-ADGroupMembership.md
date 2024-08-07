@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -MemberName
-The name of the member to search for within the group.
+The username of the member to search for within the group.
 
 ```yaml
 Type: String

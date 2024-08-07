@@ -13,24 +13,25 @@ Tests for the existence of an AD Organizational Unit (OU) object in Active Direc
 ## SYNTAX
 
 ```
-Confirm-ADOU [-Name] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Confirm-ADOU [-OUDN] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Confirm-ADOU function takes an OU name as input and returns $true if it is found, otherwise returns $false.
+The Confirm-ADOU function takes an LDAP Path for an OU as input and returns $true if the OU is found, otherwise 
+returns $false.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Confirm-ADOU -Name "MyOU01"
-Returns $true or $false
+Confirm-ADOU -OUDN "OU=YourOU,DC=YourDomain,DC=com"
+Returns $true if found or $false if not found
 ```
 
 ## PARAMETERS
 
-### -Name
-The name of the AD OU to look for.
+### -OUDN
+The LDAP path (aka OU's "Distinguished Name" (DN)) of the OU object to look for.
 
 ```yaml
 Type: String

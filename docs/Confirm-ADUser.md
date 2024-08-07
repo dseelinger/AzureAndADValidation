@@ -30,7 +30,7 @@ Returns $true or $false
 ## PARAMETERS
 
 ### -Name
-The name of the AD User to look for.
+The username of the AD User to look for.
 
 ```yaml
 Type: String

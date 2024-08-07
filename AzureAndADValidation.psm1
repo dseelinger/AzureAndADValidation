@@ -50,7 +50,7 @@
 
 #>
 
-# MyModule.psm1
+# AzureAndADValidation.psm1
 
 . $PSScriptRoot\Functions\AD\Confirm-ADComputer.ps1
 . $PSScriptRoot\Functions\AD\Confirm-ADOU.ps1
@@ -58,9 +58,9 @@
 . $PSScriptRoot\Functions\AD\Confirm-ADGroup.ps1
 . $PSScriptRoot\Functions\AD\Test-ADGroupMembership.ps1
 . $PSScriptRoot\Functions\AD\Test-MappedDrive.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzApplicationGroup.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzDisk.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzHostPool.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzApplicationGroup.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzDisk.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzHostPool.ps1
 # . $PSScriptRoot\Functions\Azure\Confirm-AzNsgRule.ps1
 # . $PSScriptRoot\Functions\Azure\Confirm-AzPermission.ps1
 # . $PSScriptRoot\Functions\Azure\Confirm-AzResourceGroup.ps1
@@ -75,9 +75,9 @@
 
 # Export the functions you want to make available
 Export-ModuleMember -Function Confirm-ADComputer, Confirm-ADOU, Confirm-ADUser, Confirm-ADGroup, Test-MappedDrive `
-    , Test-ADGroupMembership
+    , Test-ADGroupMembership, Confirm-AzApplicationGroup, Confirm-AzDisk, Confirm-AzHostPool
     
-    # , Confirm-AzApplicationGroup, Confirm-AzDisk, Confirm-AzHostPool, Confirm-AzNsgRule `
+    # Confirm-AzNsgRule `
     # , Confirm-AzPermission, Confirm-AzResourceGroup, Confirm-AzureCliInstalled, Confirm-AzKeyVault `
     # , Confirm-AzLogAnalyticsWorkspace, Confirm-AzNic, Confirm-AzStorageAccount, Confirm-AzVm, Confirm-AzWvdWorkspace `
     # , Test-AzResourceGroupDeploymentTest
@@ -88,4 +88,3 @@ Export-ModuleMember -Function Confirm-ADComputer, Confirm-ADOU, Confirm-ADUser, 
 #           assuming that AD is accessible from the dev environment.
 # TODO 001: Publish module in the PowerShell Gallery (requires creation of a PowerShell Gallery account)
 # TODO 002: Create GitHubActions to exercise
-# TODO 003: Tag tests as Integration tests or unit tests
