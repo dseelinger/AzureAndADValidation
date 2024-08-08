@@ -67,7 +67,7 @@ RequiredModules = @(
     },
     @{
         ModuleName = 'Az.Network'
-        ModuleVersion = '12.2.0'
+        ModuleVersion = '7.8.0'
     },
     @{
         ModuleName = 'Az.DesktopVirtualization'
