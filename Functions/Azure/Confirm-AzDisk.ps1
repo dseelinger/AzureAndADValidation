@@ -14,7 +14,7 @@ function Confirm-AzDisk {
     The name of the Resource Group that the disk is supposed to be in.
 
     .EXAMPLE
-    Confirm-AzDisk -Name "MyDisk01"
+    Confirm-AzDisk -Name "MyDisk01" -ResourceGroupName "MyResourceGroup01"
     Returns $true or $false
 
     .NOTES
