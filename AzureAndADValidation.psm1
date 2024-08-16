@@ -63,22 +63,24 @@
 . $PSScriptRoot\Functions\Azure\Confirm-AzHostPool.ps1
 . $PSScriptRoot\Functions\Azure\Confirm-AzNsgRule.ps1
 # . $PSScriptRoot\Functions\Azure\Confirm-AzPermission.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzResourceGroup.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzureCliInstalled.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzKeyVault.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzLogAnalyticsWorkspace.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzNic.ps1
-# . $PSScriptRoot\Functions\Azure\Confirm-AzStorageAccount.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzResourceGroup.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzureCliInstalled.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzKeyVault.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzLogAnalyticsWorkspace.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzNic.ps1
+. $PSScriptRoot\Functions\Azure\Confirm-AzStorageAccount.ps1
 # . $PSScriptRoot\Functions\Azure\Confirm-AzVm.ps1
 # . $PSScriptRoot\Functions\Azure\Confirm-AzWvdWorkspace.ps1
 # . $PSScriptRoot\Functions\Azure\Test-AzResourceGroupDeploymentTest.ps1
 
 # Export the functions you want to make available
 Export-ModuleMember -Function Confirm-ADComputer, Confirm-ADOU, Confirm-ADUser, Confirm-ADGroup, Test-MappedDrive `
-    , Test-ADGroupMembership, Confirm-AzApplicationGroup, Confirm-AzDisk, Confirm-AzHostPool, Confirm-AzNsgRule `
-    # , Confirm-AzPermission, Confirm-AzResourceGroup, Confirm-AzureCliInstalled, Confirm-AzKeyVault `
-    # , Confirm-AzLogAnalyticsWorkspace, Confirm-AzNic, Confirm-AzStorageAccount, Confirm-AzVm, Confirm-AzWvdWorkspace `
-    # , Test-AzResourceGroupDeploymentTest
+    , Test-ADGroupMembership, Confirm-AzApplicationGroup, Confirm-AzDisk, Confirm-AzHostPool, Confirm-AzNsgRule, `
+    Confirm-AzResourceGroup, Confirm-AzureCliInstalled, Confirm-AzKeyVault, Confirm-AzLogAnalyticsWorkspace, Confirm-AzNic, `
+    Confirm-AzStorageAccount
+    # Confirm-AzPermission
+    # Confirm-AzVm, Confirm-AzWvdWorkspace `
+    # Test-AzResourceGroupDeploymentTest
 
 
 # TODO 000: Create a GitHub Self-Hosted Runner with access to Active Directory so that we are able to run integration tests

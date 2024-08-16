@@ -101,7 +101,13 @@ FunctionsToExport = @(
     'Confirm-AzApplicationGroup',
     'Confirm-AzDisk',
     'Confirm-AzHostPool',
-    'Confirm-AzNsgRule'
+    'Confirm-AzNsgRule',
+    'Confirm-AzResourceGroup',
+    'Confirm-AzureCliInstalled',
+    'Confirm-AzKeyVault',
+    'Confirm-AzLogAnalyticsWorkspace',
+    'Confirm-AzNic',
+    'Confirm-AzStorageAccount'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.

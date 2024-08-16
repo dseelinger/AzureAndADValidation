@@ -3,7 +3,7 @@ BeforeAll {
 
     $location = 'usgovvirginia'
     $rgName = 'rg-integration-tests'
-    $testKeyVaultName = 'test-KeyVault-name'
+    $testKeyVaultName = 'test-KeyVault-name' + (-join (1..5 | ForEach-Object { Get-Random -Minimum 0 -Maximum 10 }))
     $fakeKeyVaultName = 'bad-KeyVault-name'
 }
 
