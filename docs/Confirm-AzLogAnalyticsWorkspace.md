@@ -5,34 +5,34 @@ online version:
 schema: 2.0.0
 ---
 
-# Confirm-AzDisk
+# Confirm-AzLogAnalyticsWorkspace
 
 ## SYNOPSIS
-Tests for the existence of a disk in Azure.
+Tests for the existence of a Log Analytics Workspace in Azure.
 
 ## SYNTAX
 
 ```
-Confirm-AzDisk [-DiskName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Confirm-AzLogAnalyticsWorkspace [-WorkspaceName] <String> [-ResourceGroupName] <String>
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Confirm-AzDisk function takes the name of an Azure disk as input and returns $true if it is found,
-otherwise returns $false.
+The Confirm-AzLogAnalyticsWorkspace function takes the name of an Azure Log Analytics Workspace and a Resource Group name
+as input and returns $true if it is found, otherwise returns $false.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Confirm-AzDisk -Name "MyDisk01" -ResourceGroupName "MyResourceGroup01"
+Confirm-AzLogAnalyticsWorkspace -WorkspaceName "MyWorkspace01" -ResourceGroupName "MyResourceGroup01"
 Returns $true or $false
 ```
 
 ## PARAMETERS
 
-### -DiskName
-The name of the Disk to look for.
+### -WorkspaceName
+The name of the Log Analytics Workspace to look for.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceGroupName
-The name of the Resource Group that the disk is supposed to be in.
+The name of the Resource Group that the Log Analytics Workspace is supposed to be in.
 
 ```yaml
 Type: String

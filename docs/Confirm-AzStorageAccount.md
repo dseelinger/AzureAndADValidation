@@ -5,34 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Confirm-AzDisk
+# Confirm-AzStorageAccount
 
 ## SYNOPSIS
-Tests for the existence of a disk in Azure.
+Confirms the existence of an Azure Storage account.
 
 ## SYNTAX
 
 ```
-Confirm-AzDisk [-DiskName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Confirm-AzStorageAccount [-StorageAccountName] <String> [-ResourceGroupName] <String>
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Confirm-AzDisk function takes the name of an Azure disk as input and returns $true if it is found,
-otherwise returns $false.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Confirm-AzDisk -Name "MyDisk01" -ResourceGroupName "MyResourceGroup01"
+Confirm-AzStorageAccount -StorageAccountName "MyStorageAccount01" -ResourceGroupName "MyResourceGroup01"
 Returns $true or $false
 ```
 
 ## PARAMETERS
 
-### -DiskName
-The name of the Disk to look for.
+### -StorageAccountName
+The name of the Storage Account to look for.
 
 ```yaml
 Type: String
@@ -47,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceGroupName
-The name of the Resource Group that the disk is supposed to be in.
+The name of the Resource Group that the Storage Account is supposed to be in.
 
 ```yaml
 Type: String

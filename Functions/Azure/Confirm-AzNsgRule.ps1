@@ -44,6 +44,32 @@ function Confirm-AzNsgRule {
     Confirm-AzNsgRule -Name "MyNsgRule" -ResourceGroupName "MyResourceGroup" -NsgName "MyNsg"
     Returns $true or $false
 
+    .EXAMPLE
+    $ruleExists = Confirm-AzNsgRule -Name "AllowSSH" -ResourceGroupName "ProdResourceGroup" -NsgName "ProdNsg"
+    if ($ruleExists) {
+        Write-Output "The NSG rule 'AllowSSH' exists in the 'ProdNsg' NSG."
+    } else {
+        Write-Output "The NSG rule 'AllowSSH' does not exist in the 'ProdNsg' NSG."
+    }
+    Checks if the NSG rule "AllowSSH" exists in the "ProdNsg" NSG and outputs a message accordingly.
+
+    .EXAMPLE
+    $result = Confirm-AzNsgRule -Name "DenyAll" -ResourceGroupName "TestResourceGroup" -NsgName "TestNsg"
+    Write-Output "NSG rule existence: $result"
+    Stores the result of the NSG rule existence check in a variable and outputs the result.
+
+    .EXAMPLE
+    if (Confirm-AzNsgRule -Name "AllowHTTP" -ResourceGroupName "WebResourceGroup" -NsgName "WebNsg") {
+        Write-Output "NSG rule 'AllowHTTP' found."
+    } else {
+        Write-Output "NSG rule 'AllowHTTP' not found."
+    }
+    Directly checks the existence of the NSG rule "AllowHTTP" in the "WebNsg" NSG and outputs a message.
+
+    .EXAMPLE
+    Confirm-AzNsgRule -Name "AllowRDP" -ResourceGroupName "RemoteAccessGroup" -NsgName "RemoteAccessNsg" -Protocol "TCP" -SourceAddressPrefix "10.0.0.0/24" -DestinationPortRange "3389"
+    Checks if the NSG rule "AllowRDP" with specific protocol, source address prefix, and destination port range exists in the "RemoteAccessNsg" NSG.
+
     .NOTES
     Author: Doug Seelinger
     #>

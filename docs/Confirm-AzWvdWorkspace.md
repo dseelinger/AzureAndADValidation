@@ -5,34 +5,34 @@ online version:
 schema: 2.0.0
 ---
 
-# Confirm-AzDisk
+# Confirm-AzWvdWorkspace
 
 ## SYNOPSIS
-Tests for the existence of a disk in Azure.
+Tests for the existence of a Windows Virtual Desktop Workspace in Azure.
 
 ## SYNTAX
 
 ```
-Confirm-AzDisk [-DiskName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Confirm-AzWvdWorkspace [-WorkspaceName] <String> [-ResourceGroupName] <String>
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Confirm-AzDisk function takes the name of an Azure disk as input and returns $true if it is found,
+The Confirm-AzWvdWorkspace function takes the name of a Workspace as input and returns $true if it is found,
 otherwise returns $false.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Confirm-AzDisk -Name "MyDisk01" -ResourceGroupName "MyResourceGroup01"
+Confirm-AzWvdWorkspace -WorkspaceName "MyWvdWorkspace" -ResourceGroupName "MyResourceGroup"
 Returns $true or $false
 ```
 
 ## PARAMETERS
 
-### -DiskName
-The name of the Disk to look for.
+### -WorkspaceName
+The name of the Windows Virtual Desktop Workspace to look for.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceGroupName
-The name of the Resource Group that the disk is supposed to be in.
+The name of the Resource Group that the Workspace is supposed to be in.
 
 ```yaml
 Type: String

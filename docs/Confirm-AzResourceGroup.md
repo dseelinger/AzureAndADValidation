@@ -5,34 +5,37 @@ online version:
 schema: 2.0.0
 ---
 
-# Confirm-AzDisk
+# Confirm-AzResourceGroup
 
 ## SYNOPSIS
-Tests for the existence of a disk in Azure.
+Tests for the existence of a resource group in Azure.
 
 ## SYNTAX
 
 ```
-Confirm-AzDisk [-DiskName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Confirm-AzResourceGroup [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Confirm-AzDisk function takes the name of an Azure disk as input and returns $true if it is found,
+The Confirm-AzResourceGroup function takes the name of an Azure Resource Group as input and returns $true if it is found,
 otherwise returns $false.
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
-Confirm-AzDisk -Name "MyDisk01" -ResourceGroupName "MyResourceGroup01"
-Returns $true or $false
-```
+
+{{ Add example description here }}
 
 ## PARAMETERS
 
-### -DiskName
-The name of the Disk to look for.
+### -ResourceGroupName
+The name of the Resource Group to look for.
+
+Confirm-AzResourceGroup -Name "MyResourceGroup01"
+Returns $true or $false
 
 ```yaml
 Type: String
@@ -41,21 +44,6 @@ Aliases:
 
 Required: True
 Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ResourceGroupName
-The name of the Resource Group that the disk is supposed to be in.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

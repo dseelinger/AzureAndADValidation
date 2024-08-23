@@ -17,6 +17,28 @@ function Confirm-AzNic {
     Confirm-AzNic -NicName "MyNic01" -ResourceGroupName "MyResourceGroup01"
     Returns $true or $false
 
+    .EXAMPLE
+    $nicExists = Confirm-AzNic -NicName "WebServerNic" -ResourceGroupName "WebResourceGroup"
+    if ($nicExists) {
+        Write-Output "The NIC 'WebServerNic' exists in the 'WebResourceGroup' resource group."
+    } else {
+        Write-Output "The NIC 'WebServerNic' does not exist in the 'WebResourceGroup' resource group."
+    }
+    Checks if the NIC "WebServerNic" exists in the "WebResourceGroup" and outputs a message accordingly.
+
+    .EXAMPLE
+    $result = Confirm-AzNic -NicName "DatabaseNic" -ResourceGroupName "DatabaseResourceGroup"
+    Write-Output "NIC existence: $result"
+    Stores the result of the NIC existence check in a variable and outputs the result.
+
+    .EXAMPLE
+    if (Confirm-AzNic -NicName "AppServerNic" -ResourceGroupName "AppResourceGroup") {
+        Write-Output "NIC 'AppServerNic' found."
+    } else {
+        Write-Output "NIC 'AppServerNic' not found."
+    }
+    Directly checks the existence of the NIC "AppServerNic" in the "AppResourceGroup" and outputs a message.
+
     .NOTES
     Author: Doug Seelinger
     #>
