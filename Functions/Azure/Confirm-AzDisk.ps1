@@ -25,7 +25,9 @@ function Confirm-AzDisk {
         [Parameter(Mandatory=$true)]
         [string]$DiskName,
         [Parameter(Mandatory=$true)]
-        [string]$ResourceGroupName
+        [string]$ResourceGroupName,
+        [Parameter(Mandatory=$false)]
+        [string]$DiskSizeGB
     )
     begin {
         Import-Module Az.Accounts
@@ -35,12 +37,14 @@ function Confirm-AzDisk {
         }
     }
     process {
-        try {
-            $disk = Get-AzDisk -Name $DiskName -ResourceGroupName $ResourceGroupName -ErrorAction Stop
-            return $null -ne $disk
-        } catch {
+        $disk = Get-AzDisk -ResourceGroupName $ResourceGroupName -Name $DiskName -ErrorAction SilentlyContinue
+        if ($null -eq $disk) {
             return $false
         }
+        if ($DiskSizeGB -and $disk.DiskSizeGB -ne $DiskSizeGB) {
+            return $false
+        }
+        return $true
     }
     end {
     }

@@ -36,6 +36,24 @@ Describe 'Confirm-AzDisk Integration Tests' -Tag 'Integration', 'Azure' {
             $result | Should -BeFalse
         }
     }
+    
+    Context 'DiskSizeGB parameter match and non-match' {
+        It 'returns $true when DiskSizeGB matches' {
+            # Act
+            $result = Confirm-AzDisk -DiskName $testDiskName -ResourceGroupName $rgName -DiskSizeGB $diskSizeGB
+
+            # Assert
+            $result | Should -BeTrue
+        }
+
+        It 'returns $false when DiskSizeGB does not match' {
+            # Act
+            $result = Confirm-AzDisk -DiskName $testDiskName -ResourceGroupName $rgName -DiskSizeGB 256
+
+            # Assert
+            $result | Should -BeFalse
+        }
+    }
 
     AfterAll {
         Remove-AzResourceGroup -Name $rgName -Force
@@ -66,6 +84,30 @@ Describe 'Confirm-AzDisk Unit Tests' -Tag 'Unit', 'Azure' {
 
             # Act
             $result = Confirm-AzDisk -DiskName $fakeDiskName -ResourceGroupName $rgName
+
+            # Assert
+            $result | Should -BeFalse
+        }
+    }
+
+    Context 'DiskSizeGB parameter match and non-match' {
+        It 'returns $true when DiskSizeGB matches' {
+            # Arrange
+            function Get-AzDisk { return @{ Name = $testDiskName; DiskSizeGB = 128 } }
+
+            # Act
+            $result = Confirm-AzDisk -DiskName $testDiskName -ResourceGroupName $rgName -DiskSizeGB 128
+
+            # Assert
+            $result | Should -BeTrue
+        }
+
+        It 'returns $false when DiskSizeGB does not match' {
+            # Arrange
+            function Get-AzDisk { return @{ Name = $testDiskName; DiskSizeGB = 128 } }
+
+            # Act
+            $result = Confirm-AzDisk -DiskName $testDiskName -ResourceGroupName $rgName -DiskSizeGB 256
 
             # Assert
             $result | Should -BeFalse
