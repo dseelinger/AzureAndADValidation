@@ -13,8 +13,18 @@ function Confirm-AzApplicationGroup {
     .PARAMETER ResourceGroupName
     The name of the Resource Group that the ApplicationGroup is supposed to be in.
 
+    .PARAMETER Location
+    The location where the ApplicationGroup is expected to be. If not specified, the location check will be skipped.
+
+    .PARAMETER ApplicationGroupType
+    The type of the ApplicationGroup. If not specified, the type check will be skipped.
+
     .EXAMPLE
-    Confirm-AzApplicationGroup -Name "MyWvdAppGroup"
+    Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup"
+    Returns $true or $false
+
+    .EXAMPLE
+    Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" -Location "EastUS"
     Returns $true or $false
 
     .NOTES
@@ -25,7 +35,12 @@ function Confirm-AzApplicationGroup {
         [Parameter(Mandatory=$true)]
         [string]$ApplicationGroupName,
         [Parameter(Mandatory=$true)]
-        [string]$ResourceGroupName
+        [string]$ResourceGroupName,
+        [Parameter(Mandatory=$false)]
+        [string]$Location,
+        [Parameter(Mandatory=$false)]
+        [string]$ApplicationGroupType
+        
     )
     begin {
         Import-Module Az.Accounts
@@ -33,16 +48,16 @@ function Confirm-AzApplicationGroup {
         if (-not (Get-AzContext)) {
             Connect-AzAccount
         }
-    }
-    process {
-        try {
-            $appGroup = Get-AzWvdApplicationGroup -Name $ApplicationGroupName -ResourceGroupName $ResourceGroupName `
-                -ErrorAction Stop
-            return $null -ne $appGroup
-        } catch {
+        $appGroup = Get-AzWvdApplicationGroup -ResourceGroupName $ResourceGroupName -Name $ApplicationGroupName -ErrorAction SilentlyContinue
+        if ($null -eq $appGroup) {
             return $false
         }
-    }
-    end {
+        if ($Location -ne $null -and $Location -ne '' -and $appGroup.Location -ne $Location) {
+            return $false
+        }
+        if ($ApplicationGroupType -ne $null -and $ApplicationGroupType -ne '' -and $appGroup.ApplicationGroupType -ne $ApplicationGroupType) {
+            return $false
+        }
+        return $true
     }
 }

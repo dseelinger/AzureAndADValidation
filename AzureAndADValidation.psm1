@@ -85,4 +85,6 @@ Export-ModuleMember -Function Confirm-ADComputer, Confirm-ADOU, Confirm-ADUser, 
 #           with GitHub Actions. Until then we are limited to Unit Tests, and can only run Integration Tests locally,
 #           assuming that AD is accessible from the dev environment.
 # TODO 001: Publish module in the PowerShell Gallery (requires creation of a PowerShell Gallery account)
-# TODO 002: Create GitHubActions to exercise
+# TODO 002: Create GitHubActions to exercise tests on each commit
+# TODO 003: Create a GitHubActions to publish the module to the PowerShell Gallery on each release
+
