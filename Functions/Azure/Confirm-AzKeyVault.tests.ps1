@@ -35,6 +35,23 @@ Describe 'Confirm-AzKeyVault Integration Tests' -Tag 'Integration', 'Azure' {
         }
     }
 
+    Context 'Location' {
+        It 'returns $false when the location does not match' {
+            # Act
+            $result = Confirm-AzKeyVault -KeyVaultName $testKeyVaultName -ResourceGroupName $rgName -Location 'eastus'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the location matches' {
+            # Act
+            $result = Confirm-AzKeyVault -KeyVaultName $testKeyVaultName -ResourceGroupName $rgName -Location $location
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
     AfterAll {
         Remove-AzResourceGroup -Name $rgName -Force
     }
@@ -67,6 +84,29 @@ Describe 'Confirm-AzKeyVault Unit Tests' -Tag 'Unit', 'Azure' {
 
             # Assert
             $result | Should -BeFalse
+        }
+    }
+
+    Context 'Location' {
+        It 'returns $false when the location does not match' {
+            # Arrange
+            function Get-AzKeyVault { return @{ Name = $testKeyVaultName; Location = 'eastus' } }
+
+            # Act
+            $result = Confirm-AzKeyVault -KeyVaultName $testKeyVaultName -ResourceGroupName $rgName -Location $location
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the location matches' {
+            # Arrange
+            function Get-AzKeyVault { return @{ Name = $testKeyVaultName; Location = $location } }
+
+            # Act
+            $result = Confirm-AzKeyVault -KeyVaultName $testKeyVaultName -ResourceGroupName $rgName -Location $location
+
+            # Assert
+            $result | Should -BeTrue
         }
     }
 }

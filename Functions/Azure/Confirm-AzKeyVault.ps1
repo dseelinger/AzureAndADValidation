@@ -13,6 +13,9 @@ function Confirm-AzKeyVault {
     .PARAMETER ResourceGroupName
     The name of the Resource Group that the Key Vault is supposed to be in.
 
+    .PARAMETER Location
+    Optional. The location of the Key Vault. If provided, the function will look for the Key Vault in the specified location.
+
     .EXAMPLE
     Confirm-AzKeyVault -Name "MyKeyVault01" -ResourceGroupName "MyResourceGroup01"
     Returns $true or $false
@@ -25,7 +28,9 @@ function Confirm-AzKeyVault {
         [Parameter(Mandatory=$true)]
         [string]$KeyVaultName,
         [Parameter(Mandatory=$true)]
-        [string]$ResourceGroupName
+        [string]$ResourceGroupName,
+        [Parameter(Mandatory=$false)]
+        [string]$Location
     )
     begin {
         Import-Module Az.Accounts
@@ -35,12 +40,14 @@ function Confirm-AzKeyVault {
         }
     }
     process {
-        try {
-            $KeyVault = Get-AzKeyVault -Name $KeyVaultName -ResourceGroupName $ResourceGroupName -ErrorAction Stop
-            return $null -ne $KeyVault
-        } catch {
-            return $false
+        $keyVault = Get-AzKeyVault -VaultName $KeyVaultName -ResourceGroupName $ResourceGroupName -ErrorAction SilentlyContinue
+        if ($keyVault) {
+            if ($Location -and $keyVault.Location -ne $Location) {
+                return $false
+            }
+            return $true
         }
+        return $false
     }
     end {
     }
