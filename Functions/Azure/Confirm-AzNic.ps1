@@ -13,6 +13,9 @@ function Confirm-AzNic {
     .PARAMETER ResourceGroupName
     The name of the Resource Group that the NIC is supposed to be in.
 
+    .PARAMETER Location
+    Optional. The location of the NIC. If provided, the function will look for the NIC in the specified location.
+
     .EXAMPLE
     Confirm-AzNic -NicName "MyNic01" -ResourceGroupName "MyResourceGroup01"
     Returns $true or $false
@@ -39,6 +42,10 @@ function Confirm-AzNic {
     }
     Directly checks the existence of the NIC "AppServerNic" in the "AppResourceGroup" and outputs a message.
 
+    .EXAMPLE
+    # including location
+    $nicExists = Confirm-AzNic -NicName "WebServerNic" -ResourceGroupName "WebResourceGroup" -Location "eastus"
+
     .NOTES
     Author: Doug Seelinger
     #>
@@ -47,7 +54,9 @@ function Confirm-AzNic {
         [Parameter(Mandatory=$true)]
         [string]$NicName,
         [Parameter(Mandatory=$true)]
-        [string]$ResourceGroupName
+        [string]$ResourceGroupName,
+        [Parameter(Mandatory=$false)]
+        [string]$Location
     )
     begin {
         Import-Module Az.Accounts
@@ -58,8 +67,14 @@ function Confirm-AzNic {
     }
     process {
         try {
-            $nic = Get-AzNetworkInterface -Name $NicName -ResourceGroupName $ResourceGroupName -ErrorAction Stop
-            return $null -ne $nic
+            $nic = Get-AzNetworkInterface -Name $NicName -ResourceGroupName $ResourceGroupName -ErrorAction SilentlyContinue
+            if ($nic) {
+                if ($Location -and $nic.Location -ne $Location) {
+                    return $false
+                }
+                return $true
+            }
+            return $false
         } catch {
             return $false
         }

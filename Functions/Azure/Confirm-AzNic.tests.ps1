@@ -54,6 +54,23 @@ Describe 'Confirm-AzNic Integration Tests' -Tag 'Integration', 'Azure' {
         }
     }
 
+    Context 'Location' {
+        It 'returns $false when the location does not match' {
+            # Act
+            $result = Confirm-AzNic -NicName $testNicName -ResourceGroupName $rgName -Location 'eastus'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the location matches' {
+            # Act
+            $result = Confirm-AzNic -NicName $testNicName -ResourceGroupName $rgName -Location $location
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
     AfterAll {
         # Clean up - Remove the created NIC, Virtual Network, and Resource Group
         Remove-AzResourceGroup -Name $rgName -Force | Out-Null
@@ -87,6 +104,29 @@ Describe 'Confirm-AzNic Unit Tests' -Tag 'Unit', 'Azure' {
 
             # Assert
             $result | Should -BeFalse
+        }
+    }
+
+    Context 'Location' {
+        It 'returns $false when the location does not match' {
+            # Arrange
+            function Get-AzNetworkInterface { return @{ Location = 'eastus' } }
+
+            # Act
+            $result = Confirm-AzNic -NicName $testNicName -ResourceGroupName $rgName -Location $location
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the location matches' {
+            # Arrange
+            function Get-AzNetworkInterface { return @{ Location = $location } }
+
+            # Act
+            $result = Confirm-AzNic -NicName $testNicName -ResourceGroupName $rgName -Location $location
+
+            # Assert
+            $result | Should -BeTrue
         }
     }
 }
