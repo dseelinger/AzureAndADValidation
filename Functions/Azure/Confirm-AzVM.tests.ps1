@@ -92,6 +92,125 @@ Describe 'Confirm-AzVm Integration Tests' -Tag 'Integration', 'Azure' {
         }
     }
 
+    Context 'Location' {
+        It 'returns $false when the location does not match' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -Location 'eastus'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the location matches' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -Location $location
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
+    Context 'VM Size' {
+        It 'returns $false when the VM size does not match' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -VmSize 'Standard_DS2_v2'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the VM size matches' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -VmSize 'Standard_DS1_v2'
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
+    Context 'Os Type' {
+        It 'returns $false when the OS type does not match' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -OsType 'Linux'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the OS type matches' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -OsType 'Windows'
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
+    Context 'SourceImagePublisherName' {
+        It 'returns $false when the SourceImagePublisherName does not match' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -SourceImagePublisherName 'Canonical'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the SourceImagePublisherName matches' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -SourceImagePublisherName 'MicrosoftWindowsServer'
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
+    Context 'SourceImageOffer' {
+        It 'returns $false when the SourceImageOffer does not match' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -SourceImageOffer 'UbuntuServer'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the SourceImageOffer matches' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -SourceImageOffer 'WindowsServer'
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
+    Context 'SourceImageSku' {
+        It 'returns $false when the SourceImageSku does not match' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -SourceImageSku '18.04-LTS'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the SourceImageSku matches' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -SourceImageSku '2019-Datacenter'
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
+    Context 'SourceImageVersion' {
+        It 'returns $false when the SourceImageVersion does not match' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -SourceImageVersion '1.0.0'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the SourceImageVersion matches' {
+            # Act
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -SourceImageVersion 'latest'
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
     AfterAll {
         Remove-AzResourceGroup -Name $rgName -Force
     }
@@ -126,4 +245,97 @@ Describe 'Confirm-AzVM Unit Tests' -Tag 'Unit', 'Azure' {
             $result | Should -BeFalse
         }
     }
+
+    Context 'Location' {
+        It 'returns $false when the location does not match' {
+            # Arrange
+            function Get-AzVM { return @{ Location = 'eastus' } }
+
+            # Act
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -Location 'usgovvirginia'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the location matches' {
+            # Arrange
+            function Get-AzVM { return @{ Location = $location } }
+
+            # Act
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -Location $location
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
+    Context 'VM Size' {
+        It 'returns $false when the VM size does not match' {
+            # Arrange
+            function Get-AzVM { return @{ HardwareProfile = @{ VmSize = 'Standard_DS1_v2' } } }
+
+            # Act
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -VmSize 'Standard_DS2_v2'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the VM size matches' {
+            # Arrange
+            function Get-AzVM { return @{ HardwareProfile = @{ VmSize = 'Standard_DS1_v2' } } }
+
+            # Act
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -VmSize 'Standard_DS1_v2'
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
+    Context 'Os Type' {
+        It 'returns $false when the OS type does not match' {
+            # Arrange
+            function Get-AzVM { return @{ StorageProfile = @{ OsDisk = @{ OsType = 'Windows' } } } }
+
+            # Act
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -OsType 'Linux'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the OS type matches' {
+            # Arrange
+            function Get-AzVM { return @{ StorageProfile = @{ OsDisk = @{ OsType = 'Windows' } } } }
+
+            # Act
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -OsType 'Windows'
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
+    Context 'SourceImagePublisherName' {
+        It 'returns $false when the SourceImagePublisherName does not match' {
+            # Arrange
+            function Get-AzVM { return @{ StorageProfile = @{ ImageReference = @{ Publisher = 'MicrosoftWindowsServer' } } } }
+
+            # Act
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -SourceImagePublisherName 'Canonical'
+
+            # Assert
+            $result | Should -BeFalse
+        }
+        It 'returns $true when the SourceImagePublisherName matches' {
+            # Arrange
+            function Get-AzVM { return @{ StorageProfile = @{ ImageReference = @{ Publisher = 'MicrosoftWindowsServer' } } } }
+
+            # Act
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -SourceImagePublisherName 'MicrosoftWindowsServer'
+
+            # Assert
+            $result | Should -BeTrue
+        }
+    }
+
 }
