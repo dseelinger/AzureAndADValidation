@@ -13,6 +13,13 @@ function Confirm-AzLogAnalyticsWorkspace {
     .PARAMETER ResourceGroupName
     The name of the Resource Group that the Log Analytics Workspace is supposed to be in.
 
+    .PARAMETER Location
+    Optional. The location of the Log Analytics Workspace. If provided, the function will look for the Log Analytics 
+    Workspace
+
+    .PARAMETER Sku
+    Optional. The SKU of the Log Analytics Workspace. If provided, the function will look for the Log Analytics Workspace
+
     .EXAMPLE
     Confirm-AzLogAnalyticsWorkspace -WorkspaceName "MyWorkspace01" -ResourceGroupName "MyResourceGroup01"
     Returns $true or $false
@@ -25,7 +32,11 @@ function Confirm-AzLogAnalyticsWorkspace {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceName,
         [Parameter(Mandatory=$true)]
-        [string]$ResourceGroupName
+        [string]$ResourceGroupName,
+        [Parameter(Mandatory=$false)]
+        [string]$Location,
+        [Parameter(Mandatory=$false)]
+        [string]$Sku
     )
     begin {
         Import-Module Az.Accounts
@@ -36,9 +47,18 @@ function Confirm-AzLogAnalyticsWorkspace {
     }
     process {
         try {
-            $workspace = Get-AzOperationalInsightsWorkspace -Name $WorkspaceName -ResourceGroupName $ResourceGroupName `
-                -ErrorAction Stop
-            return $null -ne $workspace
+            $workspace = Get-AzOperationalInsightsWorkspace -ResourceGroupName $ResourceGroupName -Name $WorkspaceName `
+                -ErrorAction SilentlyContinue
+            if ($workspace) {
+                if ($Location -and $workspace.Location -ne $Location) {
+                    return $false
+                }
+                if ($Sku -and $workspace.Sku -ne $Sku) {
+                    return $false
+                }
+                return $true
+            }
+            return $false
         } catch {
             return $false
         }
