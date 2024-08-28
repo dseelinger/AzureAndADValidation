@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzLogAnalyticsWorkspace.ps1
 
-    $location = 'usgovvirginia'
+    $location = $env:AZURE_LOCATION
     $rgName = 'rg-integration-tests'
     $testWorkspaceName = 'test-workspace-name'
     $fakeWorkspaceName = 'bad-workspace-name'

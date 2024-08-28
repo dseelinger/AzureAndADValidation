@@ -2,7 +2,7 @@ BeforeAll {
     . $PSScriptRoot\Confirm-AzRoleAssignment.ps1
 
     # Arrange - Set up variables
-    $location = 'usgovvirginia'
+    $location = $env:AZURE_LOCATION
     $resourceGroupName = "rg-integration-tests"
     $principalDisplayName = "sp-integration-tests"
     $roleDefinitionName = "Contributor"
@@ -83,6 +83,7 @@ Describe 'Confirm-AzRoleAssignment Unit Tests' -Tag 'Unit', 'Azure' {
     BeforeAll {
         function Import-Module {}
         function Get-AzContext { return $true }
+        $roleAssignmentName = 'role-assignment-name'
     }
     
     Context 'When the role assignment does not exist at all (no role name, principal name, or resource group match)' {

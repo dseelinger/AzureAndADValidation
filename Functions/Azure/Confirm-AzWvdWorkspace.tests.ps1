@@ -9,7 +9,7 @@ BeforeAll {
 Describe 'Confirm-AzWvdWorkspace Integration Tests' -Tag 'Integration', 'Azure' {
     BeforeAll {
         # Arrange - Create a Resource Group and WVD Workspace to test against
-        $location = 'usgovvirginia'
+        $location = $env:AZURE_LOCATION
         New-AzResourceGroup -Name $rgName -Location $location | Out-Null
 
         # Create a WVD Workspace
@@ -37,7 +37,7 @@ Describe 'Confirm-AzWvdWorkspace Integration Tests' -Tag 'Integration', 'Azure' 
     }
 
     AfterAll {
-        Remove-AzResourceGroup -Name $rgName -Force -AsJob
+        Remove-AzResourceGroup -Name $rgName -Force
     }
 }
 

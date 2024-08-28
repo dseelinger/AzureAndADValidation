@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzVm.ps1
 
-    $location = 'usgovvirginia'
+    $location = $env:AZURE_LOCATION
     $rgName = 'rg-integration-tests'
     $testNicName = 'test-nic-name'
     $vnetName = 'test-vnet'

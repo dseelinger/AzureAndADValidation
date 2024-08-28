@@ -9,7 +9,7 @@ BeforeAll {
 Describe 'Confirm-AzApplicationGroup Integration Tests' -Tag 'Integration', 'Azure' {
     BeforeAll {
         # Arrange - Create a Host Pool and Application Group to test against
-        $location = 'usgovvirginia'
+        $location = $env:AZURE_LOCATION
         $applicationGroupType = 'RemoteApp'
 
         New-AzResourceGroup -Name $rgName -Location $location | Out-Null

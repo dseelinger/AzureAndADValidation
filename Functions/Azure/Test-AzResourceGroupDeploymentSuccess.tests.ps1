@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Test-AzResourceGroupDeploymentSuccess.ps1
 
-    $location = 'usgovvirginia'
+    $location = $env:AZURE_LOCATION
     $rgName = 'rg-integration-tests'
     $deploymentName = 'test-deployment'
     $fakeDeploymentName = 'bad-deployment'

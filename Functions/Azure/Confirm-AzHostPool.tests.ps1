@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzHostPool.ps1
 
-    $location = 'usgovvirginia'
+    $location = $env:AZURE_LOCATION
     $rgName = 'rg-integration-tests'
     $goodHostPoolName = 'good-host-pool'
     $badHostPoolName = 'bad-host-pool'

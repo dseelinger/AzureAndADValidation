@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzResourceGroup.ps1
 
-    $location = 'usgovvirginia'
+    $location = $env:AZURE_LOCATION
     $testResourceGroupName = 'test-ResourceGroup-name'
     $fakeResourceGroupName = 'bad-ResourceGroup-name'
 }

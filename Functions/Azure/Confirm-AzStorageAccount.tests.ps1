@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzStorageAccount.ps1
 
-    $location = 'usgovvirginia'
+    $location = $env:AZURE_LOCATION
     $testResourceGroupName = 'test-ResourceGroup-name'
     $testStorageAccountName = 'absintegrationteststorag'
     $fakeStorageAccountName = 'fakestorageaccount'
