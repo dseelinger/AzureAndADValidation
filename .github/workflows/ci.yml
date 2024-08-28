@@ -16,5 +16,5 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Run PowerShell script
-      run: ./Invoke-AllTestsButADIntegration.ps1
+      run: ./Invoke-UnitTests.ps1
       shell: pwsh

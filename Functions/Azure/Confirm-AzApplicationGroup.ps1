@@ -24,7 +24,7 @@ function Confirm-AzApplicationGroup {
     Returns $true or $false
 
     .EXAMPLE
-    Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" -Location "EastUS"
+    Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" -Location "westus"
     Returns $true or $false
 
     .NOTES

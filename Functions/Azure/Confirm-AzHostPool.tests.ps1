@@ -39,7 +39,7 @@ Describe 'Confirm-AzHostPool Integration Tests' -Tag 'Integration', 'Azure' {
     Context 'When the HostPool location does not match' {
         It 'returns $false' {
             # Act
-            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -Location 'eastus'
+            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -Location 'westus'
 
             # Assert
             $result | Should -BeFalse
@@ -133,7 +133,7 @@ Describe 'Confirm-AzHostPool Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'When the HostPool location does not match' {
         It 'returns $false' {
             # Arrange
-            function Get-AzWvdHostPool { return @{ Location = 'eastus'; HostPoolType = 'Pooled' } }
+            function Get-AzWvdHostPool { return @{ Location = 'westus'; HostPoolType = 'Pooled' } }
 
             # Act
             $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -Location $location

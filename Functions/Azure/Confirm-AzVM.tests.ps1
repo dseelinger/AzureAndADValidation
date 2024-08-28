@@ -95,7 +95,7 @@ Describe 'Confirm-AzVm Integration Tests' -Tag 'Integration', 'Azure' {
     Context 'Location' {
         It 'returns $false when the location does not match' {
             # Act
-            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -Location 'eastus'
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -Location 'westus'
 
             # Assert
             $result | Should -BeFalse
@@ -249,7 +249,7 @@ Describe 'Confirm-AzVM Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'Location' {
         It 'returns $false when the location does not match' {
             # Arrange
-            function Get-AzVM { return @{ Location = 'eastus' } }
+            function Get-AzVM { return @{ Location = 'westus' } }
 
             # Act
             $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -Location 'usgovvirginia'

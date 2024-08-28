@@ -57,7 +57,7 @@ Describe 'Confirm-AzNic Integration Tests' -Tag 'Integration', 'Azure' {
     Context 'Location' {
         It 'returns $false when the location does not match' {
             # Act
-            $result = Confirm-AzNic -NicName $testNicName -ResourceGroupName $rgName -Location 'eastus'
+            $result = Confirm-AzNic -NicName $testNicName -ResourceGroupName $rgName -Location 'westus'
 
             # Assert
             $result | Should -BeFalse
@@ -110,7 +110,7 @@ Describe 'Confirm-AzNic Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'Location' {
         It 'returns $false when the location does not match' {
             # Arrange
-            function Get-AzNetworkInterface { return @{ Location = 'eastus' } }
+            function Get-AzNetworkInterface { return @{ Location = 'westus' } }
 
             # Act
             $result = Confirm-AzNic -NicName $testNicName -ResourceGroupName $rgName -Location $location

@@ -44,7 +44,7 @@ function Confirm-AzNic {
 
     .EXAMPLE
     # including location
-    $nicExists = Confirm-AzNic -NicName "WebServerNic" -ResourceGroupName "WebResourceGroup" -Location "eastus"
+    $nicExists = Confirm-AzNic -NicName "WebServerNic" -ResourceGroupName "WebResourceGroup" -Location "westus"
 
     .NOTES
     Author: Doug Seelinger

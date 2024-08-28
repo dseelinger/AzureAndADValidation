@@ -38,7 +38,7 @@ Describe 'Confirm-AzKeyVault Integration Tests' -Tag 'Integration', 'Azure' {
     Context 'Location' {
         It 'returns $false when the location does not match' {
             # Act
-            $result = Confirm-AzKeyVault -KeyVaultName $testKeyVaultName -ResourceGroupName $rgName -Location 'eastus'
+            $result = Confirm-AzKeyVault -KeyVaultName $testKeyVaultName -ResourceGroupName $rgName -Location 'westus'
 
             # Assert
             $result | Should -BeFalse
@@ -90,7 +90,7 @@ Describe 'Confirm-AzKeyVault Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'Location' {
         It 'returns $false when the location does not match' {
             # Arrange
-            function Get-AzKeyVault { return @{ Name = $testKeyVaultName; Location = 'eastus' } }
+            function Get-AzKeyVault { return @{ Name = $testKeyVaultName; Location = 'westus' } }
 
             # Act
             $result = Confirm-AzKeyVault -KeyVaultName $testKeyVaultName -ResourceGroupName $rgName -Location $location

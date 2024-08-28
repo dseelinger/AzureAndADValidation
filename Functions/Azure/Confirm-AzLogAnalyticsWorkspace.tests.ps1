@@ -39,7 +39,7 @@ Describe 'Confirm-AzLogAnalyticsWorkspace Integration Tests' -Tag 'Integration',
         It 'returns $false when the location does not match' {
             # Act
             $result = Confirm-AzLogAnalyticsWorkspace -WorkspaceName $testWorkspaceName -ResourceGroupName $rgName `
-                -Location 'eastus'
+                -Location 'westus'
 
             # Assert
             $result | Should -BeFalse
@@ -123,7 +123,7 @@ Describe 'Confirm-AzLogAnalyticsWorkspace Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'Location' {
         It 'returns $false when the location does not match' {
             # Arrange
-            function Get-AzOperationalInsightsWorkspace { return @{ Location = 'eastus'; Sku = 'PerGB2018' } }
+            function Get-AzOperationalInsightsWorkspace { return @{ Location = 'westus'; Sku = 'PerGB2018' } }
 
             # Act
             $result = Confirm-AzLogAnalyticsWorkspace -WorkspaceName $testWorkspaceName -ResourceGroupName $rgName `

@@ -56,7 +56,7 @@ Describe 'Confirm-AzApplicationGroup Integration Tests' -Tag 'Integration', 'Azu
         It 'Should return false when the location does not match' {
             # Act
             $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName `
-            -Location 'eastus'
+            -Location 'westus'
     
             # Assert
             $result | Should -Be $false
@@ -145,7 +145,7 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
             Mock Get-AzWvdApplicationGroup { $appGroup }
 
             # Act
-            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName -Location 'eastus'
+            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName -Location 'westus'
 
             # Assert
             $result | Should -Be $false
