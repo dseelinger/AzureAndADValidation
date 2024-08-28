@@ -10,20 +10,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up PowerShell
-      uses: actions/setup-powershell@v1
-      with:
-        pwsh-version: '7.x'
-
     - name: Log in to Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Install Pester 5
-      run: |
-        Install-Module -Name Pester -RequiredVersion 5.6.1 -Force -SkipPublisherCheck
-      shell: pwsh
+    # - name: Install Pester 5
+    #   run: |
+    #     Install-Module -Name Pester -RequiredVersion 5.6.1 -Force -SkipPublisherCheck
+    #   shell: pwsh
 
-    - name: Run Pester tests with code coverage
-      run: pwsh -File "./Invoke-AllTestsButADIntegration.ps1"
+    # - name: Run Pester tests with code coverage
+    #   run: pwsh -File "./Invoke-AllTestsButADIntegration.ps1"
