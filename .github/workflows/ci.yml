@@ -15,6 +15,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Install RSAT
+      run: |
+        Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability -Online
+      shell: pwsh
+  
+
     - name: Run PowerShell script
       run: ./Invoke-UnitTests.ps1
       shell: pwsh
