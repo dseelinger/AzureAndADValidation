@@ -53,10 +53,12 @@ Copyright = '(c) 2024 Doug Seelinger. All rights reserved.'
 
 # Modules that must be imported into the global environment prior to importing this module
 RequiredModules = @(
-    @{
-        ModuleName = 'ActiveDirectory'
-        ModuleVersion = '1.0.1.0'
-    },
+    # Can't require it because it can't be loaded in a GitHub Action machine
+    # TODO 004: Find a way to require ActiveDirectory module in a GitHub Action machine
+    # @{
+    #     ModuleName = 'ActiveDirectory'
+    #     ModuleVersion = '1.0.1.0'
+    # },
     @{
         ModuleName = 'Az.Accounts'
         ModuleVersion = '3.0.2'
