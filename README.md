@@ -1,5 +1,7 @@
 # AzureAndADValidation
 
+[![CI](https://github.com/dseelinger/AzureAndADValidation/actions/workflows/ci.yml/badge.svg)](https://github.com/dseelinger/AzureAndADValidation/actions/workflows/ci.yml)
+
 This PowerShell module provides a set of cmdlets for confirming that Azure and Active Directory resources have been provisioned correctly. It includes functions to validate the existence and configuration of various Azure resources, such as Network Security Groups (NSGs), role assignments, and resource group deployments.
 
 ## Installation

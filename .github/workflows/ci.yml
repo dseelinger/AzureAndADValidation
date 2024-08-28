@@ -14,12 +14,7 @@ jobs:
       uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Install RSAT
-      run: |
-        Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability -Online
-      shell: pwsh
-  
+        enable-AzPSSession: true 
 
     - name: Run PowerShell script
       run: ./Invoke-UnitTests.ps1
