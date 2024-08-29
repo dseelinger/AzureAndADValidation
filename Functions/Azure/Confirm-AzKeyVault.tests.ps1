@@ -1,8 +1,8 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzKeyVault.ps1
     . $PSScriptRoot\TestHelpers.ps1
-    $location = GetAzureLocationEnvironmentVariable
-    $rgName = 'rg-integration-tests'
+    $location = Get-AzureLocationEnvironmentVariable
+    $rgname = $env:AZURE_RESOURCE_GROUP
     $testKeyVaultName = 'test-KeyVault-name' + (-join (1..5 | ForEach-Object { Get-Random -Minimum 0 -Maximum 10 }))
     $fakeKeyVaultName = 'bad-KeyVault-name'
 }
@@ -53,7 +53,7 @@ Describe 'Confirm-AzKeyVault Integration Tests' -Tag 'Integration', 'Azure' {
     }
 
     AfterAll {
-        Remove-AzResourceGroup -Name $rgName -Force
+        Remove-AzResourceGroup -Name $rgName -Force | Out-Null
     }
 }
 

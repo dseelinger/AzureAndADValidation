@@ -2,21 +2,21 @@ BeforeAll {
     . $PSScriptRoot\Confirm-AzResourceGroup.ps1
 
     $location = $env:AZURE_LOCATION
-    $testResourceGroupName = 'test-ResourceGroup-name'
+    $rgName = $env:AZURE_RESOURCE_GROUP
     $fakeResourceGroupName = 'bad-ResourceGroup-name'
 }
 
 Describe 'Confirm-AzResourceGroup Integration Tests' -Tag 'Integration', 'Azure' {
     BeforeAll {
         # Arrange - Create a ResourceGroup to test against
-        New-AzResourceGroup -Name $testResourceGroupName -Location $location | Out-Null
+        New-AzResourceGroup -Name $rgName -Location $location | Out-Null
     }
     
     Context 'When the Resource Group exists' {
         It 'returns $true' {
 
             # Act
-            $result = Confirm-AzResourceGroup -ResourceGroupName $testResourceGroupName
+            $result = Confirm-AzResourceGroup -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeTrue
@@ -34,7 +34,7 @@ Describe 'Confirm-AzResourceGroup Integration Tests' -Tag 'Integration', 'Azure'
     }
 
     AfterAll {
-        Remove-AzResourceGroup -Name $testResourceGroupName -Force
+        Remove-AzResourceGroup -Name $rgName -Force | Out-Null
     }
 }
 
@@ -45,10 +45,10 @@ Describe 'Confirm-AzResourceGroup Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'When the Resource Group exists' {
         It 'returns $true' {
             # Arrange
-            function Get-AzResourceGroup { return @{ Name = $testResourceGroupName } }
+            function Get-AzResourceGroup { return @{ Name = $rgName } }
 
             # Act
-            $result = Confirm-AzResourceGroup -ResourceGroupName $testResourceGroupName
+            $result = Confirm-AzResourceGroup -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeTrue

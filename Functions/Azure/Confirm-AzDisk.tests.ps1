@@ -2,7 +2,7 @@ BeforeAll {
     . $PSScriptRoot\Confirm-AzDisk.ps1
 
     $location = $env:AZURE_LOCATION
-    $rgName = 'rg-integration-tests'
+    $rgname = $env:AZURE_RESOURCE_GROUP
     $testDiskName = 'test-disk-name'
     $fakeDiskName = 'bad-disk-name'
 }
@@ -56,7 +56,7 @@ Describe 'Confirm-AzDisk Integration Tests' -Tag 'Integration', 'Azure' {
     }
 
     AfterAll {
-        Remove-AzResourceGroup -Name $rgName -Force
+        Remove-AzResourceGroup -Name $rgName -Force | Out-Null
     }
 }
 

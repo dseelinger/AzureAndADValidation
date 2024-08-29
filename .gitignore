@@ -1,1 +1,10 @@
+# Ignore the Microsoft package repository configuration file, which could come from using GitHub Codespaces
 packages-microsoft-prod.deb
+
+# Ignore the Set-Vars.ps1 file - since it's used to set environment specific variables, it's not appropriate for source 
+# control and you'll need to create your own version of this file locally. Incidentally it's used to set two environment
+# variables
+Set-Vars.ps1
+
+# skip code coverage file
+coverage.xml

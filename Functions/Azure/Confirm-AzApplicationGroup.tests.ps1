@@ -1,7 +1,8 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzApplicationGroup.ps1
 
-    $rgName = 'rg-integration-tests'
+    $rgname = $env:AZURE_RESOURCE_GROUP
+    $location = $env:AZURE_LOCATION
     $testAppGroupName = 'testAppGroup'
     $fakeAppGroupName = 'notARealAppGroup'
 }
@@ -9,7 +10,6 @@ BeforeAll {
 Describe 'Confirm-AzApplicationGroup Integration Tests' -Tag 'Integration', 'Azure' {
     BeforeAll {
         # Arrange - Create a Host Pool and Application Group to test against
-        $location = $env:AZURE_LOCATION
         $applicationGroupType = 'RemoteApp'
 
         New-AzResourceGroup -Name $rgName -Location $location | Out-Null
@@ -47,7 +47,7 @@ Describe 'Confirm-AzApplicationGroup Integration Tests' -Tag 'Integration', 'Azu
         It 'Should return true when the location matches' {
             # Act
             $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName `
-                -Location 'usgovvirginia'
+                -Location $location
     
             # Assert
             $result | Should -Be $true
@@ -84,7 +84,7 @@ Describe 'Confirm-AzApplicationGroup Integration Tests' -Tag 'Integration', 'Azu
     }
 
     AfterAll {
-        Remove-AzResourceGroup -Name $rgName -Force
+        Remove-AzResourceGroup -Name $rgName -Force | Out-Null
     }
 }
 
@@ -97,7 +97,7 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
         It 'returns $true' {
             # Arrange
             $appGroup = [PSCustomObject]@{
-                Location = 'usgovvirginia'
+                Location = $location
             }
             Mock Get-AzWvdApplicationGroup { $appGroup }
 
@@ -126,12 +126,12 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
         It 'Should return true when the location matches' {
             # Arrange
             $appGroup = [PSCustomObject]@{
-                Location = 'usgovvirginia'
+                Location = $location
             }
             Mock Get-AzWvdApplicationGroup { $appGroup }
 
             # Act
-            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName -Location 'usgovvirginia'
+            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName -Location $location
 
             # Assert
             $result | Should -Be $true
@@ -140,7 +140,7 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
         It 'Should return false when the location does not match' {
             # Arrange
             $appGroup = [PSCustomObject]@{
-                Location = 'usgovvirginia'
+                Location = $location
             }
             Mock Get-AzWvdApplicationGroup { $appGroup }
 
@@ -154,7 +154,7 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
         It 'Should return true when the location parameter is not provided' {
             # Arrange
             $appGroup = [PSCustomObject]@{
-                Location = 'usgovvirginia'
+                Location = $location
             }
             Mock Get-AzWvdApplicationGroup { $appGroup }
 
@@ -170,7 +170,7 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
         It 'Should return true when the ApplicationGroupType matches' {
             # Arrange
             $appGroup = [PSCustomObject]@{
-                Location = 'usgovvirginia'
+                Location = $location
                 ApplicationGroupType = 'RemoteApp'
             }
             Mock Get-AzWvdApplicationGroup { $appGroup }
@@ -185,7 +185,7 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
         It 'Should return false when the ApplicationGroupType does not match' {
             # Arrange
             $appGroup = [PSCustomObject]@{
-                Location = 'usgovvirginia'
+                Location = $location
                 ApplicationGroupType = 'Desktop'
             }
             Mock Get-AzWvdApplicationGroup { $appGroup }
@@ -200,7 +200,7 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
         It 'Should return true when the ApplicationGroupType parameter is not provided' {
             # Arrange
             $appGroup = [PSCustomObject]@{
-                Location = 'usgovvirginia'
+                Location = $location
                 ApplicationGroupType = 'RemoteApp'
             }
             Mock Get-AzWvdApplicationGroup { $appGroup }

@@ -2,7 +2,7 @@ BeforeAll {
     . $PSScriptRoot\Test-AzResourceGroupDeploymentSuccess.ps1
 
     $location = $env:AZURE_LOCATION
-    $rgName = 'rg-integration-tests'
+    $rgname = $env:AZURE_RESOURCE_GROUP
     $deploymentName = 'test-deployment'
     $fakeDeploymentName = 'bad-deployment'
     $templateFilePath = "$PSScriptRoot\storageAccountTemplate.json"
@@ -13,9 +13,17 @@ Describe 'Test-AzResourceGroupDeploymentSuccess Integration Tests' -Tag 'Integra
         # Arrange - Create a Resource Group and a Deployment to test against
         New-AzResourceGroup -Name $rgName -Location $location | Out-Null
         
+        # Define deployment parameters
+        $parameters = @{
+            azureLocation = "$location"
+        }
+
         # Create the deployment
-        New-AzResourceGroupDeployment -ResourceGroupName $rgName -Name $deploymentName -TemplateFile $templateFilePath `
-            -TemplateParameterObject @{} | Out-Null
+        New-AzResourceGroupDeployment `
+            -ResourceGroupName $rgName `
+            -Name $deploymentName `
+            -TemplateFile $templateFilePath `
+            -TemplateParameterObject $parameters | Out-Null
     }
     
     Context 'When the Deployment exists and is successful' {

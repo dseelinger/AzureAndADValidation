@@ -1,8 +1,8 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzHostPool.ps1
     . $PSScriptRoot\TestHelpers.ps1
-    $location = GetAzureLocationEnvironmentVariable
-    $rgName = 'rg-integration-tests'
+    $location = Get-AzureLocationEnvironmentVariable
+    $rgname = $env:AZURE_RESOURCE_GROUP
     $goodHostPoolName = 'good-host-pool'
     $badHostPoolName = 'bad-host-pool'
 }
@@ -98,7 +98,7 @@ Describe 'Confirm-AzHostPool Integration Tests' -Tag 'Integration', 'Azure' {
     }
 
     AfterAll {
-        Remove-AzResourceGroup -Name $rgName -Force
+        Remove-AzResourceGroup -Name $rgName -Force | Out-Null
     }
 }
 

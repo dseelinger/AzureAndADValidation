@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzWvdWorkspace.ps1
 
-    $rgName = 'rg-integration-tests'
+    $rgname = $env:AZURE_RESOURCE_GROUP
     $testWorkspaceName = 'testWorkspace'
     $fakeWorkspaceName = 'notARealWorkspace'
 }
@@ -37,7 +37,7 @@ Describe 'Confirm-AzWvdWorkspace Integration Tests' -Tag 'Integration', 'Azure' 
     }
 
     AfterAll {
-        Remove-AzResourceGroup -Name $rgName -Force
+        Remove-AzResourceGroup -Name $rgName -Force | Out-Null
     }
 }
 

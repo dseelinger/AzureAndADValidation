@@ -1,12 +1,20 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
+    "parameters": {
+      "azureLocation": {
+        "type": "string",
+        "metadata": {
+          "description": "The Azure Location to which to deploy the resources."
+        }
+      }
+    },
     "resources": [
       {
         "type": "Microsoft.Storage/storageAccounts",
         "apiVersion": "2019-06-01",
         "name": "inttestsa73194628",
-        "location": "usgovvirginia",
+        "location": "[parameters('azureLocation')]",
         "sku": {
           "name": "Standard_LRS"
         },

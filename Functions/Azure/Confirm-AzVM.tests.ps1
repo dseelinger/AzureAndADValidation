@@ -34,7 +34,7 @@ Describe 'Confirm-AzVm Integration Tests' -Tag 'Integration', 'Azure' {
     BeforeAll {
         # Arrange - Create a Virtual Machine (VM) to test against
         $resourceGroupName = $rgName
-        $location = "usgovvirginia"
+        $location = $location
         $vmName = $testVmName
         $adminUsername = "LocalAdminUser"
         $randomPassword = New-SecureRandomPassword
@@ -212,7 +212,7 @@ Describe 'Confirm-AzVm Integration Tests' -Tag 'Integration', 'Azure' {
     }
 
     AfterAll {
-        Remove-AzResourceGroup -Name $rgName -Force
+        Remove-AzResourceGroup -Name $rgName -Force | Out-Null
     }
 }
 
@@ -252,7 +252,7 @@ Describe 'Confirm-AzVM Unit Tests' -Tag 'Unit', 'Azure' {
             function Get-AzVM { return @{ Location = 'westus' } }
 
             # Act
-            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -Location 'usgovvirginia'
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -Location $location
 
             # Assert
             $result | Should -BeFalse

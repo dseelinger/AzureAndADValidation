@@ -424,7 +424,7 @@
       <counter type="CLASS" missed="0" covered="1" />
     </class>
     <class name="AzureAndADValidation/Functions/Azure/TestHelpers" sourcefilename="Functions/Azure/TestHelpers.ps1">
-      <method name="GetAzureLocationEnvironmentVariable" desc="()" line="2">
+      <method name="Get-AzureLocationEnvironmentVariable" desc="()" line="2">
         <counter type="INSTRUCTION" missed="1" covered="3" />
         <counter type="LINE" missed="1" covered="3" />
         <counter type="METHOD" missed="0" covered="1" />

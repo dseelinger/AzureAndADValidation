@@ -1,33 +1,31 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzStorageAccount.ps1
-
-    $location = $env:AZURE_LOCATION
-    $testResourceGroupName = 'test-ResourceGroup-name'
-    $testStorageAccountName = 'absintegrationteststorag'
+    . $PSScriptRoot\TestHelpers.ps1
+    
+    $location = Get-AzureLocationEnvironmentVariable
+    $rgName = $env:AZURE_RESOURCE_GROUP
+    $testStorageAccountName = 'testsa' + (Get-RandomDigits -length 15)
     $fakeStorageAccountName = 'fakestorageaccount'
 }
 
 Describe 'Confirm-AzStorageAccount Integration Tests' -Tag 'Integration', 'Azure' {
     BeforeAll {
         # Arrange - Create a Resource Group and a Storage Account to test against
-        New-AzResourceGroup -Name $testResourceGroupName -Location $location | Out-Null
+        New-AzResourceGroup -Name $rgName -Location $location | Out-Null
 
         # Create a Storage Account
-        $storageAccountParams = @{
-            ResourceGroupName = $testResourceGroupName
-            Name              = $testStorageAccountName
-            Location          = $location
-            SkuName           = 'Standard_LRS'
-            Kind              = 'StorageV2'
-        }
-        New-AzStorageAccount @storageAccountParams | Out-Null
-    }
+        New-AzStorageAccount -ResourceGroupName $rgName `
+            -Name $testStorageAccountName `
+            -Location $location `
+            -SkuName 'Standard_LRS' `
+            -Kind 'StorageV2'
+}
     
     Context 'When the Storage Account exists' {
         It 'returns $true' {
             # Act
             $result = Confirm-AzStorageAccount -StorageAccountName $testStorageAccountName `
-                -ResourceGroupName $testResourceGroupName
+                -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeTrue
@@ -38,7 +36,7 @@ Describe 'Confirm-AzStorageAccount Integration Tests' -Tag 'Integration', 'Azure
         It 'returns $false' {
             # Act
             $result = Confirm-AzStorageAccount -StorageAccountName $fakeStorageAccountName `
-                -ResourceGroupName $testResourceGroupName
+                -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeFalse
@@ -47,7 +45,7 @@ Describe 'Confirm-AzStorageAccount Integration Tests' -Tag 'Integration', 'Azure
 
     AfterAll {
         # Clean up - Remove the Resource Group and Storage Account
-        Remove-AzResourceGroup -Name $testResourceGroupName -Force | Out-Null
+        Remove-AzResourceGroup -Name $rgName -Force | Out-Null
     }
 }
 
@@ -62,7 +60,7 @@ Describe 'Confirm-AzStorageAccount Unit Tests' -Tag 'Unit', 'Azure' {
 
             # Act
             $result = Confirm-AzStorageAccount -StorageAccountName $testStorageAccountName `
-                -ResourceGroupName $testResourceGroupName
+                -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeTrue
@@ -76,7 +74,7 @@ Describe 'Confirm-AzStorageAccount Unit Tests' -Tag 'Unit', 'Azure' {
 
             # Act
             $result = Confirm-AzStorageAccount -StorageAccountName $fakeStorageAccountName `
-                -ResourceGroupName $testResourceGroupName
+                -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeFalse
