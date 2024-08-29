@@ -6,6 +6,9 @@ jobs:
   build:
     runs-on: windows-latest
 
+    env:
+      AZURE_LOCATION: eastus
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
