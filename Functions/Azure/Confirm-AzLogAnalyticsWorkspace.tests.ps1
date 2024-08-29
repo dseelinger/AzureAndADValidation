@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzLogAnalyticsWorkspace.ps1
-
-    $location = $env:AZURE_LOCATION
+    . $PSScriptRoot\TestHelpers.ps1
+    $location = GetAzureLocationEnvironmentVariable
     $rgName = 'rg-integration-tests'
     $testWorkspaceName = 'test-workspace-name'
     $fakeWorkspaceName = 'bad-workspace-name'

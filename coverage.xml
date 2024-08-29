@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE report PUBLIC "-//JACOCO//DTD Report 1.1//EN" "report.dtd"[]>
-<report name="Pester (08/28/2024 13:16:37)">
-  <sessioninfo id="this" start="1724850991745" dump="1724850997934" />
+<report name="Pester (08/29/2024 10:46:24)">
+  <sessioninfo id="this" start="1724928377220" dump="1724928384637" />
   <package name="AzureAndADValidation">
     <class name="AzureAndADValidation/AzureAndADValidation" sourcefilename="AzureAndADValidation.psm1">
       <method name="&lt;script&gt;" desc="()" line="55">
@@ -27,12 +27,12 @@
     </class>
     <class name="AzureAndADValidation/Invoke-UnitTests" sourcefilename="Invoke-UnitTests.ps1">
       <method name="&lt;script&gt;" desc="()" line="1">
-        <counter type="INSTRUCTION" missed="5" covered="0" />
-        <counter type="LINE" missed="5" covered="0" />
+        <counter type="INSTRUCTION" missed="6" covered="0" />
+        <counter type="LINE" missed="6" covered="0" />
         <counter type="METHOD" missed="1" covered="0" />
       </method>
-      <counter type="INSTRUCTION" missed="5" covered="0" />
-      <counter type="LINE" missed="5" covered="0" />
+      <counter type="INSTRUCTION" missed="6" covered="0" />
+      <counter type="LINE" missed="6" covered="0" />
       <counter type="METHOD" missed="1" covered="0" />
       <counter type="CLASS" missed="1" covered="0" />
     </class>
@@ -87,13 +87,14 @@
       <line nr="3" mi="1" ci="0" mb="0" cb="0" />
       <line nr="4" mi="1" ci="0" mb="0" cb="0" />
       <line nr="5" mi="1" ci="0" mb="0" cb="0" />
-      <counter type="INSTRUCTION" missed="5" covered="0" />
-      <counter type="LINE" missed="5" covered="0" />
+      <line nr="6" mi="1" ci="0" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="6" covered="0" />
+      <counter type="LINE" missed="6" covered="0" />
       <counter type="METHOD" missed="1" covered="0" />
       <counter type="CLASS" missed="1" covered="0" />
     </sourcefile>
-    <counter type="INSTRUCTION" missed="39" covered="0" />
-    <counter type="LINE" missed="38" covered="0" />
+    <counter type="INSTRUCTION" missed="40" covered="0" />
+    <counter type="LINE" missed="39" covered="0" />
     <counter type="METHOD" missed="3" covered="0" />
     <counter type="CLASS" missed="3" covered="0" />
   </package>
@@ -422,6 +423,17 @@
       <counter type="METHOD" missed="0" covered="1" />
       <counter type="CLASS" missed="0" covered="1" />
     </class>
+    <class name="AzureAndADValidation/Functions/Azure/TestHelpers" sourcefilename="Functions/Azure/TestHelpers.ps1">
+      <method name="GetAzureLocationEnvironmentVariable" desc="()" line="2">
+        <counter type="INSTRUCTION" missed="1" covered="3" />
+        <counter type="LINE" missed="1" covered="3" />
+        <counter type="METHOD" missed="0" covered="1" />
+      </method>
+      <counter type="INSTRUCTION" missed="1" covered="3" />
+      <counter type="LINE" missed="1" covered="3" />
+      <counter type="METHOD" missed="0" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </class>
     <sourcefile name="Functions/Azure/Confirm-AzApplicationGroup.ps1">
       <line nr="46" mi="0" ci="1" mb="0" cb="0" />
       <line nr="47" mi="0" ci="1" mb="0" cb="0" />
@@ -673,13 +685,23 @@
       <counter type="METHOD" missed="0" covered="1" />
       <counter type="CLASS" missed="0" covered="1" />
     </sourcefile>
-    <counter type="INSTRUCTION" missed="53" covered="129" />
-    <counter type="LINE" missed="50" covered="117" />
-    <counter type="METHOD" missed="1" covered="13" />
-    <counter type="CLASS" missed="1" covered="13" />
+    <sourcefile name="Functions/Azure/TestHelpers.ps1">
+      <line nr="2" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="3" mi="0" ci="1" mb="0" cb="0" />
+      <line nr="4" mi="1" ci="0" mb="0" cb="0" />
+      <line nr="7" mi="0" ci="1" mb="0" cb="0" />
+      <counter type="INSTRUCTION" missed="1" covered="3" />
+      <counter type="LINE" missed="1" covered="3" />
+      <counter type="METHOD" missed="0" covered="1" />
+      <counter type="CLASS" missed="0" covered="1" />
+    </sourcefile>
+    <counter type="INSTRUCTION" missed="54" covered="132" />
+    <counter type="LINE" missed="51" covered="120" />
+    <counter type="METHOD" missed="1" covered="14" />
+    <counter type="CLASS" missed="1" covered="14" />
   </package>
-  <counter type="INSTRUCTION" missed="99" covered="173" />
-  <counter type="LINE" missed="95" covered="149" />
-  <counter type="METHOD" missed="5" covered="19" />
-  <counter type="CLASS" missed="5" covered="19" />
+  <counter type="INSTRUCTION" missed="101" covered="176" />
+  <counter type="LINE" missed="97" covered="152" />
+  <counter type="METHOD" missed="5" covered="20" />
+  <counter type="CLASS" missed="5" covered="20" />
 </report>

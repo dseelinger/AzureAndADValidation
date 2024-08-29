@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzHostPool.ps1
-
-    $location = $env:AZURE_LOCATION
+    . $PSScriptRoot\TestHelpers.ps1
+    $location = GetAzureLocationEnvironmentVariable
     $rgName = 'rg-integration-tests'
     $goodHostPoolName = 'good-host-pool'
     $badHostPoolName = 'bad-host-pool'
@@ -136,7 +136,7 @@ Describe 'Confirm-AzHostPool Unit Tests' -Tag 'Unit', 'Azure' {
             function Get-AzWvdHostPool { return @{ Location = 'westus'; HostPoolType = 'Pooled' } }
 
             # Act
-            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -Location $location
+            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -Location 'eastus'
 
             # Assert
             $result | Should -BeFalse

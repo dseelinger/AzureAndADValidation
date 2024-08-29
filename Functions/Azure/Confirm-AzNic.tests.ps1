@@ -1,7 +1,7 @@
 BeforeAll {
     . $PSScriptRoot\Confirm-AzNic.ps1
-
-    $location = $env:AZURE_LOCATION
+    . $PSScriptRoot\TestHelpers.ps1
+    $location = GetAzureLocationEnvironmentVariable
     $rgName = 'rg-integration-tests'
     $testNicName = 'test-nic-name'
     $fakeNicName = 'bad-nic-name'
