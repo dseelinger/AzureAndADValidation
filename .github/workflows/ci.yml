@@ -25,5 +25,5 @@ jobs:
       shell: pwsh
 
     - name: Run PowerShell script
-      run: ./Invoke-UnitTests.ps1
+      run: ./Invoke-AllTestsButADIntegration.ps1
       shell: pwsh
