@@ -18,7 +18,7 @@ jobs:
       uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS2 }}
-        environment: 'usgovernment'
+        environment: 'azureusgovernment'
         enable-AzPSSession: true 
 
     - name: Install Az PowerShell module
