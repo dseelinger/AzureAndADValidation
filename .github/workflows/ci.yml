@@ -16,6 +16,11 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSSession: true 
 
+    - name: Install Az PowerShell module
+      run: |
+        Install-Module -Name Az -Force -Scope CurrentUser
+      shell: pwsh
+
     - name: Run PowerShell script
       run: ./Invoke-UnitTests.ps1
       shell: pwsh
