@@ -27,5 +27,5 @@ jobs:
       shell: pwsh
 
     - name: Run PowerShell script
-      run: ./Invoke-AllTestsButADIntegration.ps1
+      run: ./Invoke-TestsOnGitHub.ps1
       shell: pwsh

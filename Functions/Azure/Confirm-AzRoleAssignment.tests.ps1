@@ -11,7 +11,7 @@ BeforeAll {
     $scope = "/subscriptions/$subscriptionId/resourceGroups/$rgName"
 }
 
-Describe 'Confirm-AzRoleAssignment Integration Tests' -Tag 'Integration', 'Azure' {
+Describe 'Confirm-AzRoleAssignment Integration Tests' -Tag 'Integration', 'Azure', 'Skip-on-GitHub' {
     BeforeAll {
         # Arrange - Create a service principal and assign it the Contributor role
         $sp = New-AzADServicePrincipal -DisplayName $principalDisplayName
