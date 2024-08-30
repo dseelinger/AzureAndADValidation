@@ -4,6 +4,7 @@ Import-Module .\AzureAndADValidation.psd1
 
 # Create a Pester configuration object
 $config = [PesterConfiguration]::Default
+$config.CodeCoverage.Enabled = $true
 $config.Filter.ExcludeTag = @('AD-Integration')
 
 # Run Pester with the configuration object and collect code coverage
