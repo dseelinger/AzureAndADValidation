@@ -29,3 +29,5 @@ jobs:
     - name: Run PowerShell script
       run: ./Invoke-AllTestsButADIntegration.ps1
       shell: pwsh
+
+      
