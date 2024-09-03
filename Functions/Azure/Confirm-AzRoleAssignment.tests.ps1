@@ -21,8 +21,7 @@ Describe 'Confirm-AzRoleAssignment Integration Tests' -Tag 'Integration', 'Azure
         $roleAssignmentName = $roleAssignment.RoleAssignmentName
     }
 
-    Context 'When the RoleAssignment does not exist at all (no role assignment name, resource group, or principal ID match)'
-    {
+    Context 'When RoleAssignment does not exist at all (no role assignment name, resource group, or principal ID match)' {
         It 'returns $false' {
             # Act
             $result = Confirm-AzRoleAssignment -RoleAssignmentName 'role-assignment-does-not-exist' `
