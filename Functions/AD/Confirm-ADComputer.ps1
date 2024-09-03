@@ -14,6 +14,9 @@ function Confirm-ADComputer {
     Confirm-ADComputer -Name "VirtualMachine01"
     Returns $true if found or $false if not found
 
+    .EXAMPLE
+    Confirm-ADComputer -Name "VirtualMachine01" | Out-Null
+
     .NOTES
     Author: Doug Seelinger
     #>

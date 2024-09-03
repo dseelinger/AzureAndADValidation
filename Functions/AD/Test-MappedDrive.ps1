@@ -14,20 +14,16 @@ function Test-MappedDrive {
     The Drive Letter for the mapped drive
 
     .EXAMPLE
+    # Check if a mapped drive to a specific path exists
     Test-MappedDrive -Path "\\someMachine\c$\some\path"
 
-    Returns $true if any mapped drive with that path is found on the current machine.
-
     .EXAMPLE
+    # Check if a mapped drive with a specific drive letter exists. Drive letter may optionally omit the colon (:).
     Test-MappedDrive -DriveLetter "Q:"
 
-    Returns $true if any mapped drive with that drive letter is found on the current machine. Drive letter may optionally 
-    omit the colon (:).
-
     .EXAMPLE
+    # Check if a mapped drive with a specific drive letter and path exists    
     Test-MappedDrive -Path "\\someMachine\c$\some\path" -DriveLetter "Q:"
-
-    Returns $true if any mapped drive with that path and drive letter is found on the current machine.
 
     .NOTES
     Author: Doug Seelinger

@@ -20,13 +20,14 @@ function Confirm-AzApplicationGroup {
     The type of the ApplicationGroup. If not specified, the type check will be skipped.
 
     .EXAMPLE
+    # Check if an ApplicationGroup named "MyWvdAppGroup" exists in the "MyResourceGroup" Resource Group
     Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup"
-    Returns $true or $false
-
+    
     .EXAMPLE
+    # Check if an ApplicationGroup named "MyWvdAppGroup" exists in the "MyResourceGroup" Resource Group and store the
+    # result in a variable
     Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" -Location "westus"
-    Returns $true or $false
-
+    
     .NOTES
     Author: Doug Seelinger
     #>
