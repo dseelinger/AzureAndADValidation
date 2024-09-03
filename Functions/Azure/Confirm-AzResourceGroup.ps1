@@ -1,38 +1,38 @@
 function Confirm-AzResourceGroup {
     <#
     .SYNOPSIS
-    Tests for the existence of a resource group in Azure.
+        Tests for the existence of a resource group in Azure.
 
     .DESCRIPTION
-    The Confirm-AzResourceGroup function takes the name of an Azure Resource Group as input and returns $true if it is found,
-    otherwise returns $false.
+        The Confirm-AzResourceGroup function takes the name of an Azure Resource Group as input and returns $true if it is 
+        found, otherwise returns $false.
 
     .PARAMETER ResourceGroupName
-    The name of the Resource Group to look for.
+        The name of the Resource Group to look for.
 
     .EXAMPLE
-    # Check if a Resource Group named "MyResourceGroup01" exists
-    Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01"
+        # Check if a Resource Group named "MyResourceGroup01" exists
+        Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01"
 
     .EXAMPLE
-    # Check if a Resource Group named "MyResourceGroup01" exists and store the result in a variable.
-    $exists = Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01"
-    if ($exists) {
-        Write-Output "MyResourceGroup01 exists."
-    } else {
-        Write-Output "MyResourceGroup01 does not exist."
-    }
-
-    .EXAMPLE
-    # How to use this in a Pester test
-    Describe "MyResourceGroup01 Resource Group" {
-        It "Should exist" {
-            Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+        # Check if a Resource Group named "MyResourceGroup01" exists and store the result in a variable.
+        $exists = Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01"
+        if ($exists) {
+            Write-Output "MyResourceGroup01 exists."
+        } else {
+            Write-Output "MyResourceGroup01 does not exist."
         }
-    }
+
+    .EXAMPLE
+        # How to use this in a Pester test
+        Describe "MyResourceGroup01 Resource Group" {
+            It "Should exist" {
+                Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+            }
+        }
 
     .NOTES
-    Author: Doug Seelinger
+        Author: Doug Seelinger
     #>
     [CmdletBinding()]
     param (

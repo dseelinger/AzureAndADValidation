@@ -48,7 +48,8 @@ Describe 'Confirm-AzVm Integration Tests' -Tag 'Integration', 'Azure' {
         $imageSku = "2019-Datacenter"
 
         New-AzResourceGroup -Name $resourceGroupName -Location $location
-        $vnet = New-AzVirtualNetwork -ResourceGroupName $resourceGroupName -Location $location -Name $vnetName -AddressPrefix "10.0.0.0/16"
+        $vnet = New-AzVirtualNetwork -ResourceGroupName $resourceGroupName -Location $location -Name $vnetName `
+            -AddressPrefix "10.0.0.0/16"
         $subnet = Add-AzVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix "10.0.0.0/24" -VirtualNetwork $vnet
         $vnet | Set-AzVirtualNetwork
 
@@ -153,7 +154,8 @@ Describe 'Confirm-AzVm Integration Tests' -Tag 'Integration', 'Azure' {
         }
         It 'returns $true when the SourceImagePublisherName matches' {
             # Act
-            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName -SourceImagePublisherName 'MicrosoftWindowsServer'
+            $result = Confirm-AzVm -VmName $testVmName -ResourceGroupName $rgName `
+                -SourceImagePublisherName 'MicrosoftWindowsServer'
 
             # Assert
             $result | Should -BeTrue
@@ -318,7 +320,9 @@ Describe 'Confirm-AzVM Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'SourceImagePublisherName' {
         It 'returns $false when the SourceImagePublisherName does not match' {
             # Arrange
-            function Get-AzVM { return @{ StorageProfile = @{ ImageReference = @{ Publisher = 'MicrosoftWindowsServer' } } } }
+            function Get-AzVM { 
+                return @{ StorageProfile = @{ ImageReference = @{ Publisher = 'MicrosoftWindowsServer' } } } 
+            }
 
             # Act
             $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -SourceImagePublisherName 'Canonical'
@@ -331,7 +335,8 @@ Describe 'Confirm-AzVM Unit Tests' -Tag 'Unit', 'Azure' {
             function Get-AzVM { return @{ StorageProfile = @{ ImageReference = @{ Publisher = 'MicrosoftWindowsServer' } } } }
 
             # Act
-            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName -SourceImagePublisherName 'MicrosoftWindowsServer'
+            $result = Confirm-AzVM -VmName $testVmName -ResourceGroupName $rgName `
+                -SourceImagePublisherName 'MicrosoftWindowsServer'
 
             # Assert
             $result | Should -BeTrue

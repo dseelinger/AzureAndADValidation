@@ -131,7 +131,8 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
             Mock Get-AzWvdApplicationGroup { $appGroup }
 
             # Act
-            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName -Location $location
+            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName `
+                -Location $location
 
             # Assert
             $result | Should -Be $true
@@ -145,7 +146,8 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
             Mock Get-AzWvdApplicationGroup { $appGroup }
 
             # Act
-            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName -Location 'westus'
+            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName `
+                -Location 'westus'
 
             # Assert
             $result | Should -Be $false
@@ -176,7 +178,8 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
             Mock Get-AzWvdApplicationGroup { $appGroup }
 
             # Act
-            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName -ApplicationGroupType 'RemoteApp'
+            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName `
+                -ApplicationGroupType 'RemoteApp'
 
             # Assert
             $result | Should -Be $true
@@ -191,7 +194,8 @@ Describe 'Confirm-AzApplicationGroup Unit Tests' -Tag 'Unit', 'Azure' {
             Mock Get-AzWvdApplicationGroup { $appGroup }
 
             # Act
-            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName -ApplicationGroupType 'RemoteApp'
+            $result = Confirm-AzApplicationGroup -ApplicationGroupName $testAppGroupName -ResourceGroupName $rgName `
+                -ApplicationGroupType 'RemoteApp'
 
             # Assert
             $result | Should -Be $false

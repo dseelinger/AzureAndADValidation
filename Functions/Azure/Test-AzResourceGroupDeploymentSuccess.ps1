@@ -1,50 +1,44 @@
 function Test-AzResourceGroupDeploymentSuccess {
     <#
     .SYNOPSIS
-    Tests whether an Azure Resource Group deployment was successful.
+        Tests whether an Azure Resource Group deployment was successful.
 
     .DESCRIPTION
-    The Test-AzResourceGroupDeploymentSuccess function takes the name of an Azure Resource Group deployment as input 
-    and returns $true if the deployment was successful, otherwise returns $false.
+        The Test-AzResourceGroupDeploymentSuccess function takes the name of an Azure Resource Group deployment as input 
+        and returns $true if the deployment was successful, otherwise returns $false.
 
     .PARAMETER DeploymentName
-    The name of the deployment to check.
+        The name of the deployment to check.
 
     .PARAMETER ResourceGroupName
-    The name of the Resource Group that the deployment is in.
+        The name of the Resource Group that the deployment is in.
 
     .EXAMPLE
-    Test-AzResourceGroupDeploymentSuccess -DeploymentName "MyDeployment01" -ResourceGroupName "MyResourceGroup01"
-    Returns $true or $false
+        # Check if a deployment named "MyDeployment01" was successful in the resource group "MyResourceGroup01"
+        Test-AzResourceGroupDeploymentSuccess -DeploymentName "MyDeployment01" -ResourceGroupName "MyResourceGroup01"
 
     .EXAMPLE
-    $deploymentSuccess = Test-AzResourceGroupDeploymentSuccess -DeploymentName "WebAppDeployment" -ResourceGroupName "WebAppResourceGroup"
-    if ($deploymentSuccess) {
-        Write-Output "The deployment 'WebAppDeployment' was successful."
-    } else {
-        Write-Output "The deployment 'WebAppDeployment' failed."
-    }
-    Checks if the deployment "WebAppDeployment" in the "WebAppResourceGroup" was successful and outputs a message accordingly.
+        # Check if a deployment named "MyDeployment01" was successful in the resource group "MyResourceGroup01" and store the 
+        # result in a variable.
+        $success = Test-AzResourceGroupDeploymentSuccess -DeploymentName "MyDeployment01" -ResourceGroupName `
+            "MyResourceGroup01"
+        if ($success) {
+            Write-Output "MyDeployment01 was successful in the MyResourceGroup01 Resource Group."
+        } else {
+            Write-Output "MyDeployment01 was not successful in the MyResourceGroup01 Resource Group."
+        }
 
     .EXAMPLE
-    $result = Test-AzResourceGroupDeploymentSuccess -DeploymentName "DatabaseDeployment" -ResourceGroupName "DatabaseResourceGroup"
-    Write-Output "Deployment success: $result"
-    Stores the result of the deployment success check in a variable and outputs the result.
-
-    .EXAMPLE
-    if (Test-AzResourceGroupDeploymentSuccess -DeploymentName "NetworkDeployment" -ResourceGroupName "NetworkResourceGroup") {
-        Write-Output "Deployment 'NetworkDeployment' was successful."
-    } else {
-        Write-Output "Deployment 'NetworkDeployment' failed."
-    }
-    Directly checks the success of the deployment "NetworkDeployment" in the "NetworkResourceGroup" and outputs a message.
-
-    .EXAMPLE
-    Test-AzResourceGroupDeploymentSuccess -DeploymentName "StorageDeployment" -ResourceGroupName "StorageResourceGroup"
-    Checks if the deployment "StorageDeployment" in the "StorageResourceGroup" was successful and returns $true or $false.
+        # How to use this in a Pester test
+        Describe "MyDeployment01 Deployment" {
+            It "Should be successful in the MyResourceGroup01 Resource Group" {
+                Test-AzResourceGroupDeploymentSuccess -DeploymentName "MyDeployment01" -ResourceGroupName `
+                    "MyResourceGroup01" | Should -Be $true
+            }
+        }
 
     .NOTES
-    Author: Doug Seelinger
+        Author: Doug Seelinger
     #>
     [CmdletBinding()]
     param (

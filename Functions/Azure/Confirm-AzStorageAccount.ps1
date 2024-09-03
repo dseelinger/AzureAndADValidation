@@ -27,7 +27,8 @@ function Confirm-AzStorageAccount {
         # How to use this in a Pester test
         Describe "MyStorageAccount Storage Account" {
             It "Should exist in the MyResourceGroup Resource Group" {
-                Confirm-AzStorageAccount -StorageAccountName "MyStorageAccount" -ResourceGroupName "MyResourceGroup" | Should -Be $true
+                Confirm-AzStorageAccount -StorageAccountName "MyStorageAccount" -ResourceGroupName "MyResourceGroup" `
+                    | Should -Be $true
             }
         }
 
@@ -50,7 +51,8 @@ function Confirm-AzStorageAccount {
     }
     process {
         try {
-            $storageAccount = Get-AzStorageAccount -Name $StorageAccountName -ResourceGroupName $ResourceGroupName -ErrorAction Stop
+            $storageAccount = Get-AzStorageAccount -Name $StorageAccountName -ResourceGroupName $ResourceGroupName `
+                -ErrorAction Stop
             return $null -ne $storageAccount
         } catch {
             return $false

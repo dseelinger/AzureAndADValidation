@@ -21,7 +21,8 @@ Describe 'Confirm-AzRoleAssignment Integration Tests' -Tag 'Integration', 'Azure
         $roleAssignmentName = $roleAssignment.RoleAssignmentName
     }
 
-    Context 'When the RoleAssignment does not exist at all (no role assignment name, resource group, or principal ID match)' {
+    Context 'When the RoleAssignment does not exist at all (no role assignment name, resource group, or principal ID match)'
+    {
         It 'returns $false' {
             # Act
             $result = Confirm-AzRoleAssignment -RoleAssignmentName 'role-assignment-does-not-exist' `
@@ -92,8 +93,9 @@ Describe 'Confirm-AzRoleAssignment Unit Tests' -Tag 'Unit', 'Azure' {
             function Get-AzRoleAssignment { return $null }
 
             # Act
-            $result = Confirm-AzRoleAssignment -RoleAssignmentName 'role-assignment-does-not-exist' -PrincipalDisplayName $principalDisplayName `
-            -RoleDefinitionName $roleDefinitionName -Scope $scope -ResourceGroupName $rgName
+            $result = Confirm-AzRoleAssignment -RoleAssignmentName 'role-assignment-does-not-exist' `
+                -PrincipalDisplayName $principalDisplayName -RoleDefinitionName $roleDefinitionName -Scope $scope `
+                -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeFalse
@@ -115,8 +117,8 @@ Describe 'Confirm-AzRoleAssignment Unit Tests' -Tag 'Unit', 'Azure' {
         }
         It 'returns $true if no other parameters are provided' {
             # Act
-            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName -PrincipalDisplayName $principalDisplayName `
-            -ResourceGroupName $rgName
+            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName `
+                -PrincipalDisplayName $principalDisplayName -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeTrue
@@ -124,8 +126,9 @@ Describe 'Confirm-AzRoleAssignment Unit Tests' -Tag 'Unit', 'Azure' {
 
         It 'returns $true if all parameters match' {
             # Act
-            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName -PrincipalDisplayName $principalDisplayName `
-            -RoleDefinitionName $roleDefinitionName -Scope $scope -ResourceGroupName $rgName
+            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName `
+                -PrincipalDisplayName $principalDisplayName -RoleDefinitionName $roleDefinitionName -Scope $scope `
+                -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeTrue
@@ -133,8 +136,9 @@ Describe 'Confirm-AzRoleAssignment Unit Tests' -Tag 'Unit', 'Azure' {
 
         It 'returns $false if the role definition name does not match' {
             # Act
-            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName -PrincipalDisplayName $principalDisplayName `
-            -RoleDefinitionName 'DifferentRoleDefinitionName' -Scope $scope -ResourceGroupName $rgName
+            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName `
+                -PrincipalDisplayName $principalDisplayName -RoleDefinitionName 'DifferentRoleDefinitionName' `
+                -Scope $scope -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeFalse
@@ -142,8 +146,9 @@ Describe 'Confirm-AzRoleAssignment Unit Tests' -Tag 'Unit', 'Azure' {
 
         It 'returns $false if the scope does not match' {
             # Act
-            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName -PrincipalDisplayName $principalDisplayName `
-            -RoleDefinitionName $roleDefinitionName -Scope 'DifferentScope' -ResourceGroupName $rgName
+            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName `
+                -PrincipalDisplayName $principalDisplayName -RoleDefinitionName $roleDefinitionName -Scope 'DifferentScope' `
+                -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeFalse
@@ -151,8 +156,9 @@ Describe 'Confirm-AzRoleAssignment Unit Tests' -Tag 'Unit', 'Azure' {
 
         It 'returns $false if the principal display name does not match' {
             # Act
-            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName -PrincipalDisplayName 'DifferentPrincipalDisplayName' `
-            -RoleDefinitionName $roleDefinitionName -Scope $scope -ResourceGroupName $rgName
+            $result = Confirm-AzRoleAssignment -RoleAssignmentName $roleAssignmentName `
+                -PrincipalDisplayName 'DifferentPrincipalDisplayName' -RoleDefinitionName $roleDefinitionName -Scope $scope `
+                -ResourceGroupName $rgName
 
             # Assert
             $result | Should -BeFalse

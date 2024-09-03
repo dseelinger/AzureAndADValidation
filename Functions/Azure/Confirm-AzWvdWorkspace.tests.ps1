@@ -48,7 +48,9 @@ Describe 'Confirm-AzWvdWorkspace Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'When the Workspace exists' {
         It 'returns $true' {
             # Arrange
-            function Get-AzWvdWorkspace { return [PSCustomObject]@{Name = "testWorkspace"; ResourceGroupName = "rg-integration-tests" } }
+            function Get-AzWvdWorkspace { 
+                return [PSCustomObject]@{Name = "testWorkspace"; ResourceGroupName = "rg-integration-tests" } 
+            }
 
             # Act
             $result = Confirm-AzWvdWorkspace -WorkspaceName $testWorkspaceName -ResourceGroupName $rgName

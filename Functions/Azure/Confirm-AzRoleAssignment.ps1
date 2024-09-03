@@ -1,65 +1,66 @@
 function Confirm-AzRoleAssignment {
     <#
     .SYNOPSIS
-    Tests for the existence of an Azure Role Assignment and (optionally) its specific configuration in Azure.
+        Tests for the existence of an Azure Role Assignment and (optionally) its specific configuration in Azure.
 
     .DESCRIPTION
-    The Confirm-AzRoleAssignment function takes several parameters and returns $true if it is found and matches the specified 
-    configuration, otherwise it returns $false.
+        The Confirm-AzRoleAssignment function takes several parameters and returns $true if it is found and matches the
+        specified configuration, otherwise it returns $false.
 
     .PARAMETER RoleAssignmentName
-    The name of the Role Assignment to look for. This parameter is required.
+        The name of the Role Assignment to look for. This parameter is required.
 
     .PARAMETER ResourceGroupName
-    The name of the Resource Group that the Role Assignment is supposed to be in. This parameter is required.
+        The name of the Resource Group that the Role Assignment is supposed to be in. This parameter is required.
 
     .PARAMETER PrincipalDisplayName
-    The Display Name for the principal (user, group, or service principal) assigned to the role. This parameter is required.
+        The Display Name for the principal (user, group, or service principal) assigned to the role. This parameter is 
+        required.
 
     .PARAMETER RoleDefinitionName
-    The name of the role definition (e.g., "Contributor", "Reader"). This parameter is optional.
+        The name of the role definition (e.g., "Contributor", "Reader"). This parameter is optional.
 
     .PARAMETER Scope
-    The scope of the role assignment (e.g., subscription, resource group, or resource). This parameter is optional.
+        The scope of the role assignment (e.g., subscription, resource group, or resource). This parameter is optional.
 
     .EXAMPLE
-    # Check if a role assignment named "MyRoleAssignment01" exists in the resource group "MyResourceGroup01"
-    Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
-        -PrincipalDisplayName "MyUser01"
+        # Check if a role assignment named "MyRoleAssignment01" exists in the resource group "MyResourceGroup01"
+        Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+            -PrincipalDisplayName "MyUser01"
 
     .EXAMPLE
-    # Check if a role assignment named "MyRoleAssignment01" exists in the resource group "MyResourceGroup01" and store the 
-    # result in a variable.
-    $exists = Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
-        -PrincipalDisplayName "MyUser01
-    if ($exists) {
-        Write-Output "MyRoleAssignment01 exists in the MyResourceGroup01 Resource Group."
-    } else {
-        Write-Output "MyRoleAssignment01 does not exist in the MyResourceGroup01 Resource Group."
-    }
-
-    .EXAMPLE
-    # Check with a specific role definition
-    Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
-        -PrincipalDisplayName "MyUser01" -RoleDefinitionName "Contributor"
-
-    .EXAMPLE
-    # Check with a specific scope
-    Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
-        -PrincipalDisplayName "MyUser01" -Scope "/subscriptions/00000000-0000-0000-0000-000000000000"
-
-
-    .EXAMPLE
-    # How to use this in a Pester test
-    Describe "MyRoleAssignment01 Role Assignment" {
-        It "Should exist in the MyResourceGroup01 Resource Group" {
-            Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
-                -PrincipalDisplayName "MyUser01" | Should -Be $true
+        # Check if a role assignment named "MyRoleAssignment01" exists in the resource group "MyResourceGroup01" and store 
+        # the result in a variable.
+        $exists = Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+            -PrincipalDisplayName "MyUser01
+        if ($exists) {
+            Write-Output "MyRoleAssignment01 exists in the MyResourceGroup01 Resource Group."
+        } else {
+            Write-Output "MyRoleAssignment01 does not exist in the MyResourceGroup01 Resource Group."
         }
-    }
+
+    .EXAMPLE
+        # Check with a specific role definition
+        Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+            -PrincipalDisplayName "MyUser01" -RoleDefinitionName "Contributor"
+
+    .EXAMPLE
+        # Check with a specific scope
+        Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+            -PrincipalDisplayName "MyUser01" -Scope "/subscriptions/00000000-0000-0000-0000-000000000000"
+
+
+    .EXAMPLE
+        # How to use this in a Pester test
+        Describe "MyRoleAssignment01 Role Assignment" {
+            It "Should exist in the MyResourceGroup01 Resource Group" {
+                Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+                    -PrincipalDisplayName "MyUser01" | Should -Be $true
+            }
+        }
 
     .NOTES
-    Author: Doug Seelinger
+        Author: Doug Seelinger
     #>
 
     [CmdletBinding()]

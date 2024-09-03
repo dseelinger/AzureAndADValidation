@@ -1,18 +1,35 @@
 function Confirm-AzureCliInstalled {
     <#
     .SYNOPSIS
-    Tests for the presence of an installation of the Azure CLI.
+        Tests for the presence of an installation of the Azure CLI.
 
     .DESCRIPTION
-    The Confirm-AzureCliInstalled function tests the current machine to see if the Azure CLI has been installed and returns 
-    $true if it is found, otherwise returns $false.
+        The Confirm-AzureCliInstalled function tests the current machine to see if the Azure CLI has been installed and 
+        returns $true if it is found, otherwise returns $false.
 
     .EXAMPLE
-    Confirm-AzureCliInstalled
-    Returns $true or $false
+        # Check if the Azure CLI is installed
+        Confirm-AzureCliInstalled
+
+    .EXAMPLE
+        # Check if the Azure CLI is installed and store the result in a variable.
+        $exists = Confirm-AzureCliInstalled
+        if ($exists) {
+            Write-Output "The Azure CLI is installed."
+        } else {
+            Write-Output "The Azure CLI is not installed."
+        }
+
+    .EXAMPLE
+        # How to use this in a Pester test
+        Describe "Azure CLI" {
+            It "Should be installed" {
+                Confirm-AzureCliInstalled | Should -Be $true
+            }
+        }
 
     .NOTES
-    Author: Doug Seelinger
+        Author: Doug Seelinger
     #>
     begin {
     }

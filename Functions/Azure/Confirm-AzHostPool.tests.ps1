@@ -59,7 +59,8 @@ Describe 'Confirm-AzHostPool Integration Tests' -Tag 'Integration', 'Azure' {
     Context 'When the HostPool LoadBalancerType does not match' {
         It 'returns $false' {
             # Act
-            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -LoadBalancerType 'DepthFirst'
+            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName `
+                -LoadBalancerType 'DepthFirst'
 
             # Assert
             $result | Should -BeFalse
@@ -79,7 +80,8 @@ Describe 'Confirm-AzHostPool Integration Tests' -Tag 'Integration', 'Azure' {
     Context 'When the HostPool PreferredAppGroupType does not match' {
         It 'returns $false' {
             # Act
-            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -PreferredAppGroupType 'Mobile'
+            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName `
+                -PreferredAppGroupType 'Mobile'
 
             # Assert
             $result | Should -BeFalse
@@ -89,8 +91,8 @@ Describe 'Confirm-AzHostPool Integration Tests' -Tag 'Integration', 'Azure' {
     Context 'When all parameters match' {
         It 'returns $true' {
             # Act
-            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -Location $location -HostPoolType 'Pooled' `
-                -LoadBalancerType 'BreadthFirst' -MaxSessionLimit 10 -PreferredAppGroupType 'Desktop'
+            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -Location $location `
+                -HostPoolType 'Pooled' -LoadBalancerType 'BreadthFirst' -MaxSessionLimit 10 -PreferredAppGroupType 'Desktop'
 
             # Assert
             $result | Should -BeTrue
@@ -157,10 +159,12 @@ Describe 'Confirm-AzHostPool Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'When the HostPool LoadBalancerType does not match' {
         It 'returns $false' {
             # Arrange
-            function Get-AzWvdHostPool { return @{ Location = $location; HostPoolType = 'Pooled'; LoadBalancerType = 'DepthFirst' } }
+            function Get-AzWvdHostPool { return @{ Location = $location; HostPoolType = 'Pooled'; `
+                LoadBalancerType = 'DepthFirst' } }
 
             # Act
-            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -LoadBalancerType 'BreadthFirst'
+            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName `
+                -LoadBalancerType 'BreadthFirst'
 
             # Assert
             $result | Should -BeFalse
@@ -169,7 +173,8 @@ Describe 'Confirm-AzHostPool Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'When the HostPool MaxSessionLimit does not match' {
         It 'returns $false' {
             # Arrange
-            function Get-AzWvdHostPool { return @{ Location = $location; HostPoolType = 'Pooled'; LoadBalancerType = 'BreadthFirst'; MaxSessionLimit = 5 } }
+            function Get-AzWvdHostPool { return @{ Location = $location; HostPoolType = 'Pooled'; `
+                LoadBalancerType = 'BreadthFirst'; MaxSessionLimit = 5 } }
 
             # Act
             $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -MaxSessionLimit 10
@@ -181,10 +186,12 @@ Describe 'Confirm-AzHostPool Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'When the HostPool PreferredAppGroupType does not match' {
         It 'returns $false' {
             # Arrange
-            function Get-AzWvdHostPool { return @{ Location = $location; HostPoolType = 'Pooled'; LoadBalancerType = 'BreadthFirst'; MaxSessionLimit = 10; PreferredAppGroupType = 'Mobile' } }
+            function Get-AzWvdHostPool { return @{ Location = $location; HostPoolType = 'Pooled'; `
+                LoadBalancerType = 'BreadthFirst'; MaxSessionLimit = 10; PreferredAppGroupType = 'Mobile' } }
 
             # Act
-            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -PreferredAppGroupType 'Desktop'
+            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName `
+                -PreferredAppGroupType 'Desktop'
 
             # Assert
             $result | Should -BeFalse
@@ -193,11 +200,12 @@ Describe 'Confirm-AzHostPool Unit Tests' -Tag 'Unit', 'Azure' {
     Context 'When all parameters match' {
         It 'returns $true' {
             # Arrange
-            function Get-AzWvdHostPool { return @{ Location = $location; HostPoolType = 'Pooled'; LoadBalancerType = 'BreadthFirst'; MaxSessionLimit = 10; PreferredAppGroupType = 'Desktop' } }
+            function Get-AzWvdHostPool { return @{ Location = $location; HostPoolType = 'Pooled'; `
+                LoadBalancerType = 'BreadthFirst'; MaxSessionLimit = 10; PreferredAppGroupType = 'Desktop' } }
 
             # Act
-            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -Location $location -HostPoolType 'Pooled' `
-                -LoadBalancerType 'BreadthFirst' -MaxSessionLimit 10 -PreferredAppGroupType 'Desktop'
+            $result = Confirm-AzHostPool -HostPoolName $goodHostPoolName -ResourceGroupName $rgName -Location $location `
+                -HostPoolType 'Pooled' -LoadBalancerType 'BreadthFirst' -MaxSessionLimit 10 -PreferredAppGroupType 'Desktop'
 
             # Assert
             $result | Should -BeTrue

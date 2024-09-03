@@ -4,7 +4,8 @@ function Confirm-ADGroup {
         Tests for the existence of an AD Group object in Active Directory.
 
     .DESCRIPTION
-        The Confirm-ADGroup function takes a group name as input and returns $true if it is found, otherwise it returns $false.
+        The Confirm-ADGroup function takes a group name as input and returns $true if it is found, otherwise it returns 
+        $false.
 
     .PARAMETER Name
         The name of the AD Group to look for.
