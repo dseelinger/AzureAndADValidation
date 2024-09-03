@@ -26,7 +26,30 @@ function Confirm-AzApplicationGroup {
     .EXAMPLE
     # Check if an ApplicationGroup named "MyWvdAppGroup" exists in the "MyResourceGroup" Resource Group and store the
     # result in a variable
-    Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" -Location "westus"
+    $exists = Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup"
+    if ($exists) {
+        Write-Output "MyWvdAppGroup exists in the MyResourceGroup Resource Group."
+    } else {
+        Write-Output "MyWvdAppGroup does not exist in the MyResourceGroup Resource Group."
+    }
+
+    .EXAMPLE
+    # Check with a specific location
+    Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" -Location "eastus"
+
+    .EXAMPLE
+    # Check with a specific ApplicationGroupType
+    Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" `
+        -ApplicationGroupType "DesktopApplicationGroup"
+
+    .EXAMPLE
+    # How to use this in a Pester test
+    Describe "MyWvdAppGroup Application Group" {
+        It "Should exist in the MyResourceGroup Resource Group" {
+            Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" `
+                | Should -Be $true
+        }
+    }
     
     .NOTES
     Author: Doug Seelinger

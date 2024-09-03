@@ -32,33 +32,46 @@ function Confirm-AzHostPool {
     same PreferredAppGroupType.
 
     .EXAMPLE
-    Confirm-AzHostPool -HostPoolName "MyHostPool" -ResourceGroupName "MyResourceGroup"
-    Returns $true if the HostPool named "MyHostPool" is found in the Resource Group named "MyResourceGroup".
+    # Check if a HostPool named "MyHostPool01" exists in the resource group "MyResourceGroup01"
+    Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01"
 
     .EXAMPLE
-    Confirm-AzHostPool -HostPoolName "MyHostPool" -ResourceGroupName "MyResourceGroup" -Location "East US"
-    Returns $true if the HostPool named "MyHostPool" is found in the Resource Group named "MyResourceGroup" and is located in
-    the "East US" region.
+    # Check if a HostPool named "MyHostPool01" exists in the resource group "MyResourceGroup01" and store the result in a `
+    # variable.
+    $exists = Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01"
+    if ($exists) {
+        Write-Output "MyHostPool01 exists in the MyResourceGroup01 Resource Group."
+    } else {
+        Write-Output "MyHostPool01 does not exist in the MyResourceGroup01 Resource Group."
+    }
 
     .EXAMPLE
-    Confirm-AzHostPool -HostPoolName "MyHostPool" -ResourceGroupName "MyResourceGroup" -HostPoolType "Pooled"
-    Returns $true if the HostPool named "MyHostPool" is found in the Resource Group named "MyResourceGroup" and is of type 
-    "Pooled".
+    # Check with a specific location
+    Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" -Location "eastus"
 
     .EXAMPLE
-    Confirm-AzHostPool -HostPoolName "MyHostPool" -ResourceGroupName "MyResourceGroup" -LoadBalancerType "BreadthFirst"
-    Returns $true if the HostPool named "MyHostPool" is found in the Resource Group named "MyResourceGroup" and has a
-    Load Balancer type of "BreadthFirst".
+    # Check with a specific HostPoolType
+    Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" -HostPoolType "Pooled"
 
     .EXAMPLE
-    Confirm-AzHostPool -HostPoolName "MyHostPool" -ResourceGroupName "MyResourceGroup" -MaxSessionLimit 10
-    Returns $true if the HostPool named "MyHostPool" is found in the Resource Group named "MyResourceGroup" and has a
-    MaxSessionLimit of 10.
+    # Check with a specific LoadBalancerType
+    Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" -LoadBalancerType "BreadthFirst"
 
     .EXAMPLE
-    Confirm-AzHostPool -HostPoolName "MyHostPool" -ResourceGroupName "MyResourceGroup" -PreferredAppGroupType "Desktop"
-    Returns $true if the HostPool named "MyHostPool" is found in the Resource Group named "MyResourceGroup" and has a
-    PreferredAppGroupType of "Desktop".
+    # Check with a specific MaxSessionLimit
+    Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" -MaxSessionLimit 10
+
+    .EXAMPLE
+    # Check with a specific PreferredAppGroupType
+    Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" -PreferredAppGroupType "Desktop"
+
+    .EXAMPLE
+    # How to use this in a Pester test
+    Describe "MyHostPool01 Host Pool" {
+        It "Should exist in the MyResourceGroup01 Resource Group" {
+            Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+        }
+    }
 
     .NOTES
     Author: Doug Seelinger

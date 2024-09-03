@@ -23,31 +23,43 @@ function Confirm-AzRoleAssignment {
     The scope of the role assignment (e.g., subscription, resource group, or resource). This parameter is optional.
 
     .EXAMPLE
-    $roleExists = Confirm-AzRoleAssignment -PrincipalId "11111111-1111-1111-1111-111111111111" -RoleDefinitionName "Reader" -Scope "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/MyResourceGroup"
-    if ($roleExists) {
-        Write-Output "The role assignment 'Reader' exists for the principal in the specified scope."
+    # Check if a role assignment named "MyRoleAssignment01" exists in the resource group "MyResourceGroup01"
+    Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+        -PrincipalDisplayName "MyUser01"
+
+    .EXAMPLE
+    # Check if a role assignment named "MyRoleAssignment01" exists in the resource group "MyResourceGroup01" and store the 
+    # result in a variable.
+    $exists = Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+        -PrincipalDisplayName "MyUser01
+    if ($exists) {
+        Write-Output "MyRoleAssignment01 exists in the MyResourceGroup01 Resource Group."
     } else {
-        Write-Output "The role assignment 'Reader' does not exist for the principal in the specified scope."
+        Write-Output "MyRoleAssignment01 does not exist in the MyResourceGroup01 Resource Group."
     }
-    Checks if the role assignment "Reader" exists for the specified principal in the given scope and outputs a message accordingly.
 
     .EXAMPLE
-    $result = Confirm-AzRoleAssignment -PrincipalId "22222222-2222-2222-2222-222222222222" -RoleDefinitionName "Owner" -Scope "/subscriptions/22222222-2222-2222-2222-222222222222/resourceGroups/AnotherResourceGroup"
-    Write-Output "Role assignment existence: $result"
-    Stores the result of the role assignment existence check in a variable and outputs the result.
+    # Check with a specific role definition
+    Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+        -PrincipalDisplayName "MyUser01" -RoleDefinitionName "Contributor"
 
     .EXAMPLE
-    if (Confirm-AzRoleAssignment -PrincipalId "33333333-3333-3333-3333-333333333333" -RoleDefinitionName "Contributor" -Scope "/subscriptions/33333333-3333-3333-3333-333333333333/resourceGroups/YetAnotherResourceGroup") {
-        Write-Output "Role assignment 'Contributor' found."
-    } else {
-        Write-Output "Role assignment 'Contributor' not found."
+    # Check with a specific scope
+    Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+        -PrincipalDisplayName "MyUser01" -Scope "/subscriptions/00000000-0000-0000-0000-000000000000"
+
+
+    .EXAMPLE
+    # How to use this in a Pester test
+    Describe "MyRoleAssignment01 Role Assignment" {
+        It "Should exist in the MyResourceGroup01 Resource Group" {
+            Confirm-AzRoleAssignment -RoleAssignmentName "MyRoleAssignment01" -ResourceGroupName "MyResourceGroup01" `
+                -PrincipalDisplayName "MyUser01" | Should -Be $true
+        }
     }
-    Directly checks the existence of the role assignment "Contributor" for the specified principal in the given scope and outputs a message.
 
-    .EXAMPLE
-    Confirm-AzRoleAssignment -PrincipalId "44444444-4444-4444-4444-444444444444" -RoleDefinitionName "Reader" -Scope "/subscriptions/44444444-4444-4444-4444-444444444444/resourceGroups/SomeResourceGroup/resources/SomeResource"
-    Checks if the role assignment "Reader" exists for the specified principal in the given resource scope.
-
+    .NOTES
+    Author: Doug Seelinger
     #>
 
     [CmdletBinding()]

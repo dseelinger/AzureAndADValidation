@@ -13,26 +13,25 @@ function Test-ADGroupMembership {
     The username of the member to search for within the group.
 
     .EXAMPLE
-    Test-GroupMembership -GroupName "MyGroup01" -MemberName "MySAMAccountName01"
-    Returns $true or $false
+    # Check if a user named "jdoe" is a member of the group "FooUsers"
+    Test-ADGroupMembership -GroupName "FooUsers" -MemberName "jdoe"
 
     .EXAMPLE
-    Test-GroupMembership -GroupName "Admins" -MemberName "JohnDoe"
-    Checks if the user "JohnDoe" is a member of the "Admins" group and returns $true or $false.
-
-    .EXAMPLE
-    $result = Test-GroupMembership -GroupName "HR" -MemberName "JaneSmith"
-    if ($result) {
-        Write-Output "JaneSmith is a member of the HR group."
+    # Check if a user named "jdoe" is a member of the group "FooUsers" and store the result in a variable
+    $exists = Test-ADGroupMembership -GroupName "FooUsers" -MemberName "jdoe"
+    if ($exists) {
+        Write-Output "User jdoe is a member of the FooUsers group."
     } else {
-        Write-Output "JaneSmith is not a member of the HR group."
+        Write-Output "User jdoe is not a member of the FooUsers group."
     }
-    Checks if "JaneSmith" is a member of the "HR" group and outputs a message accordingly.
 
     .EXAMPLE
-    $isMember = Test-GroupMembership -GroupName "ITSupport" -MemberName "AliceW"
-    Write-Output "Membership status: $isMember"
-    Stores the result of the membership check in a variable and outputs the membership status.
+    # How to use this in a Pester test
+    Describe "jdoe User" {
+        It "Should be a member of the FooUsers group" {
+            Test-ADGroupMembership -GroupName "FooUsers" -MemberName "jdoe" | Should -Be $true
+        }
+    }
 
     .NOTES
     Author: Doug Seelinger

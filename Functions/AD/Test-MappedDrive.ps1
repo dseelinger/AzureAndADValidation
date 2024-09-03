@@ -25,6 +25,14 @@ function Test-MappedDrive {
     # Check if a mapped drive with a specific drive letter and path exists    
     Test-MappedDrive -Path "\\someMachine\c$\some\path" -DriveLetter "Q:"
 
+    .EXAMPLE
+    # Use in a Pester test
+    Describe "Mapped Drive Q:" {
+        It "Should exist" {
+            Test-MappedDrive -DriveLetter "Q:" | Should -Be $true
+        }
+    }
+
     .NOTES
     Author: Doug Seelinger
     #>

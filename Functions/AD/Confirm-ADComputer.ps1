@@ -1,24 +1,37 @@
 function Confirm-ADComputer {
     <#
     .SYNOPSIS
-    Tests for the existence of an AD Computer object in Active Directory.
+        Tests for the existence of an AD Computer object in Active Directory.
 
     .DESCRIPTION
-    The Confirm-ADComputer function takes a computer name as input and returns $true if the computer is found, otherwise 
-    returns $false.
+        The Confirm-ADComputer function takes a computer name as input and returns $true if the computer is found, otherwise 
+        returns $false.
 
     .PARAMETER Name
-    The name of the AD Computer object to look for.
+        The name of the AD Computer object to look for.
 
     .EXAMPLE
-    Confirm-ADComputer -Name "VirtualMachine01"
-    Returns $true if found or $false if not found
+        # Check if a computer named "VirtualMachine01" exists in Active Directory
+        Confirm-ADComputer -Name "VirtualMachine01"
 
     .EXAMPLE
-    Confirm-ADComputer -Name "VirtualMachine01" | Out-Null
+        # Use the result in a script to perform an action if the computer exists
+        if (Confirm-ADComputer -Name "VirtualMachine01") {
+            Write-Output "Computer VirtualMachine01 exists in Active Directory."
+        } else {
+            Write-Output "Computer VirtualMachine01 does not exist in Active Directory."
+        }
+
+    .EXAMPLE
+        # Use in a Pester Test
+        Describe "VirtualMachine01" {
+            It "Should exist" {
+                Confirm-ADComputer -Name "VirtualMachine01" | Should -Be $true
+            }
+        }
 
     .NOTES
-    Author: Doug Seelinger
+        Author: Doug Seelinger
     #>
     [CmdletBinding()]
     param (

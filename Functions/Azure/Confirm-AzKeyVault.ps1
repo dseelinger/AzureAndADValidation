@@ -17,8 +17,30 @@ function Confirm-AzKeyVault {
     Optional. The location of the Key Vault. If provided, the function will look for the Key Vault in the specified location.
 
     .EXAMPLE
-    Confirm-AzKeyVault -Name "MyKeyVault01" -ResourceGroupName "MyResourceGroup01"
-    Returns $true or $false
+    # Check if a Key Vault named "MyKeyVault01" exists in the resource group "MyResourceGroup01"
+    Confirm-AzKeyVault -KeyVaultName "MyKeyVault01" -ResourceGroupName "MyResourceGroup01"
+
+    .EXAMPLE
+    # Check if a Key Vault named "MyKeyVault01" exists in the resource group "MyResourceGroup01" and store the result in a `
+    # variable.
+    $exists = Confirm-AzKeyVault -KeyVaultName "MyKeyVault01" -ResourceGroupName "MyResourceGroup01"
+    if ($exists) {
+        Write-Output "MyKeyVault exists in the MyResourceGroup01 Resource Group."
+    } else {
+        Write-Output "MyKeyVault does not exist in the MyResourceGroup01 Resource Group."
+    }
+
+    .EXAMPLE
+    # Check with a specific location
+    Confirm-AzKeyVault -KeyVaultName "MyKeyVault01" -ResourceGroupName "MyResourceGroup01" -Location "eastus"
+
+    .EXAMPLE
+    # How to use this in a Pester test
+    Describe "MyKeyVault01 Key Vault" {
+        It "Should exist in the MyResourceGroup01 Resource Group" {
+            Confirm-AzKeyVault -KeyVaultName "MyKeyVault01" -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+        }
+    }
 
     .NOTES
     Author: Doug Seelinger

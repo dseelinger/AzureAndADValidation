@@ -23,30 +23,13 @@ function Confirm-ADUser {
     }
 
     .EXAMPLE
-    # Use the function in a script to perform an action if the user exists
-    if (Confirm-ADUser -Name "jdoe") {
-        Set-ADUser -Identity "jdoe" -Title "Senior Developer"
-    } else {
-        Write-Output "User jdoe not found in Active Directory."
-    }
-
-    .EXAMPLE
-    # Check multiple users in a loop
-    $userNames = @("jdoe", "asmith", "mjones")
-    foreach ($user in $userNames) {
-        if (Confirm-ADUser -Name $user) {
-            Write-Output "User $user exists in Active Directory."
-        } else {
-            Write-Output "User $user does not exist in Active Directory."
+    # How to use this in a Pester test
+    Describe "jdoe User" {
+        It "Should exist at this point" {
+            Confirm-ADUser -Name "jdoe" | Should -Be $true
         }
     }
 
-    .EXAMPLE
-    # Check if a user exists and take different actions based on the result
-    switch (Confirm-ADUser -Name "jdoe") {
-        $true { Write-Output "User jdoe exists." }
-        $false { Write-Output "User jdoe does not exist." }
-    }
 
     .NOTES
     Author: Doug Seelinger

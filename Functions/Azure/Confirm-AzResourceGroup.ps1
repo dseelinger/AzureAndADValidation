@@ -10,8 +10,26 @@ function Confirm-AzResourceGroup {
     .PARAMETER ResourceGroupName
     The name of the Resource Group to look for.
 
-    Confirm-AzResourceGroup -Name "MyResourceGroup01"
-    Returns $true or $false
+    .EXAMPLE
+    # Check if a Resource Group named "MyResourceGroup01" exists
+    Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01"
+
+    .EXAMPLE
+    # Check if a Resource Group named "MyResourceGroup01" exists and store the result in a variable.
+    $exists = Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01"
+    if ($exists) {
+        Write-Output "MyResourceGroup01 exists."
+    } else {
+        Write-Output "MyResourceGroup01 does not exist."
+    }
+
+    .EXAMPLE
+    # How to use this in a Pester test
+    Describe "MyResourceGroup01 Resource Group" {
+        It "Should exist" {
+            Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+        }
+    }
 
     .NOTES
     Author: Doug Seelinger
