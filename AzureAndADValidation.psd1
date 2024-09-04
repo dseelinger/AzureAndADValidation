@@ -13,7 +13,7 @@
 RootModule = 'AzureAndADValidation'
 
 # Version number of this module.
-ModuleVersion = '1.0'
+ModuleVersion = '1.0.3'
 
 # Supported PSEditions
 # CompatiblePSEditions = @('Core')
@@ -31,10 +31,10 @@ CompanyName = 'Microsoft'
 Copyright = '(c) 2024 Doug Seelinger. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'This module provides a set of functions to validate configurations and settings in Azure and Active Directory environments.'
 
 # Minimum version of the PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '7.4'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -173,3 +173,8 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
+
+
+
+
+

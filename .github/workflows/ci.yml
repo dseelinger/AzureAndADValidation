@@ -29,3 +29,21 @@ jobs:
     - name: Run PowerShell script
       run: ./Invoke-TestsOnGitHub.ps1
       shell: pwsh
+
+    - name: Run PowerShell script to build module
+      if: success()
+      run: ./Invoke-BuildProcess.ps1
+      shell: pwsh
+
+    - name: Install PowerShellGet module
+      if: success()
+      run: |
+        Install-Module -Name PowerShellGet -Force -Scope CurrentUser -AllowClobber
+      shell: pwsh
+
+    - name: Publish module to PowerShell Gallery
+      if: success()
+      run: |
+        $apiKey = "${{ secrets.POWERSHELL_GALLERY_API_KEY }}"
+        Publish-Module -Path ./_build/AzureAndADValidation -Repository PSGallery -NuGetApiKey $apiKey
+      shell: pwsh

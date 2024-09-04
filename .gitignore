@@ -8,3 +8,6 @@ Set-Vars.ps1
 
 # skip code coverage file
 coverage.xml
+
+# Ingore the _build folder
+_build/
