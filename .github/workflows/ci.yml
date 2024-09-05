@@ -24,10 +24,10 @@ jobs:
         environment: 'azureusgovernment'
         enable-AzPSSession: true 
 
-    - name: Install Az PowerShell module
-      run: |
-        Install-Module -Name Az -Force -Scope CurrentUser -AllowClobber
-      shell: pwsh
+    # - name: Install Az PowerShell module
+    #   run: |
+    #     Install-Module -Name Az -Force -Scope CurrentUser -AllowClobber
+    #   shell: pwsh
 
     - name: Run PowerShell script
       run: ./Invoke-TestsOnGitHub.ps1
@@ -38,11 +38,11 @@ jobs:
       run: ./Invoke-BuildProcess.ps1
       shell: pwsh
 
-    - name: Install PowerShellGet module
-      if: success()
-      run: |
-        Install-Module -Name PowerShellGet -Force -Scope CurrentUser -AllowClobber
-      shell: pwsh
+    # - name: Install PowerShellGet module
+    #   if: success()
+    #   run: |
+    #     Install-Module -Name PowerShellGet -Force -Scope CurrentUser -AllowClobber
+    #   shell: pwsh
 
     - name: Publish module to PowerShell Gallery
       if: success()
