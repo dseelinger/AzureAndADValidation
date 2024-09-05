@@ -1,10 +1,13 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ghrunner
 
     env:
       AZURE_LOCATION: usgovvirginia
