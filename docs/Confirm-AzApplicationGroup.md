@@ -14,7 +14,8 @@ Tests for the existence of a Windows Virtual Desktop ApplicationGroup in Azure.
 
 ```
 Confirm-AzApplicationGroup [-ApplicationGroupName] <String> [-ResourceGroupName] <String>
- [-ProgressAction <ActionPreference>] [<CommonParameters>]
+ [[-Location] <String>] [[-ApplicationGroupType] <String>] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -56,6 +57,36 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Location
+The location where the ApplicationGroup is expected to be. If not specified, the location check will be skipped.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ApplicationGroupType
+The type of the ApplicationGroup. If not specified, the type check will be skipped.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

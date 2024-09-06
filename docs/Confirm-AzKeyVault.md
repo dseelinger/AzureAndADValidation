@@ -13,8 +13,8 @@ Tests for the existence of a Key Vault in Azure.
 ## SYNTAX
 
 ```
-Confirm-AzKeyVault [-KeyVaultName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Confirm-AzKeyVault [-KeyVaultName] <String> [-ResourceGroupName] <String> [[-Location] <String>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -56,6 +56,22 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Location
+Optional. The location of the Key Vault. If provided, the function will look for the Key Vault in the specified 
+location.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

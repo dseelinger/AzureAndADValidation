@@ -13,8 +13,8 @@ Tests for the existence of a Network Interface Card (NIC) in Azure.
 ## SYNTAX
 
 ```
-Confirm-AzNic [-NicName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Confirm-AzNic [-NicName] <String> [-ResourceGroupName] <String> [[-Location] <String>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -84,6 +84,21 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Location
+Optional. The location of the NIC. If provided, the function will look for the NIC in the specified location.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

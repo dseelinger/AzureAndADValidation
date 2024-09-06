@@ -13,8 +13,8 @@ Tests for the existence of a Log Analytics Workspace in Azure.
 ## SYNTAX
 
 ```
-Confirm-AzLogAnalyticsWorkspace [-WorkspaceName] <String> [-ResourceGroupName] <String>
- [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Confirm-AzLogAnalyticsWorkspace [-WorkspaceName] <String> [-ResourceGroupName] <String> [[-Location] <String>]
+ [[-Sku] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -56,6 +56,37 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Location
+Optional. The location of the Log Analytics Workspace. If provided, the function will look for the Log Analytics 
+Workspace
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Sku
+Optional. The SKU of the Log Analytics Workspace. If provided, the function will look for the Log Analytics Workspace
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

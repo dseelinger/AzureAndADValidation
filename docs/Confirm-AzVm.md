@@ -13,7 +13,9 @@ Tests for the existence of a Virtual Machine in Azure.
 ## SYNTAX
 
 ```
-Confirm-AzVm [-VmName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
+Confirm-AzVm [-VmName] <String> [-ResourceGroupName] <String> [[-Location] <String>] [[-VMSize] <String>]
+ [[-OsType] <String>] [[-SourceImagePublisherName] <String>] [[-SourceImageOffer] <String>]
+ [[-SourceImageSku] <String>] [[-SourceImageVersion] <String>] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
@@ -56,6 +58,118 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Location
+Optional. The location of the Virtual Machine. If provided, the function will look for the Virtual Machine in the 
+specified location.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -VMSize
+Optional. The size of the Virtual Machine. If provided, the function will look for the Virtual Machine with the
+specified size.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OsType
+Optional. The OS type of the Virtual Machine. If provided, the function will look for the Virtual Machine with the
+specified OS type.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SourceImagePublisherName
+Optional. The publisher name of the source image of the Virtual Machine. If provided, the function will look for the
+Virtual Machine with the specified source image publisher name.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SourceImageOffer
+Optional. The offer of the source image of the Virtual Machine. If provided, the function will look for the Virtual
+Machine with the specified source image offer.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 7
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SourceImageSku
+Optional. The SKU of the source image of the Virtual Machine. If provided, the function will look for the Virtual
+Machine with the specified source image SKU.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 8
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SourceImageVersion
+Optional. The version of the source image of the Virtual Machine. If provided, the function will look for the Virtual
+Machine with the specified source image version.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 9
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

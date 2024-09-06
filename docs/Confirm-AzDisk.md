@@ -13,8 +13,8 @@ Tests for the existence of a disk in Azure.
 ## SYNTAX
 
 ```
-Confirm-AzDisk [-DiskName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Confirm-AzDisk [-DiskName] <String> [-ResourceGroupName] <String> [[-DiskSizeGB] <String>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -56,6 +56,21 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DiskSizeGB
+{{ Fill DiskSizeGB Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

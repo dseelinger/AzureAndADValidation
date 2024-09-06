@@ -105,6 +105,7 @@ FunctionsToExport = @(
     'Confirm-AzHostPool',
     'Confirm-AzNsgRule',
     'Confirm-AzResourceGroup',
+    'Confirm-AzRoleAssignment',
     'Confirm-AzureCliInstalled',
     'Confirm-AzKeyVault',
     'Confirm-AzLogAnalyticsWorkspace',
@@ -167,7 +168,7 @@ PrivateData = @{
 } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
-# HelpInfoURI = ''
+HelpInfoURI = 'https://github.com/dseelinger/AzureAndADValidation/blob/main/en-US/about_AzureAndADValidation.md'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''

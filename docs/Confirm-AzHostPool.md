@@ -13,8 +13,9 @@ Tests for the existence of a HostPool in Azure.
 ## SYNTAX
 
 ```
-Confirm-AzHostPool [-HostPoolName] <String> [-ResourceGroupName] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Confirm-AzHostPool [-HostPoolName] <String> [-ResourceGroupName] <String> [[-Location] <String>]
+ [[-HostPoolType] <String>] [[-LoadBalancerType] <String>] [[-MaxSessionLimit] <Int32>]
+ [[-PreferredAppGroupType] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -56,6 +57,86 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Location
+Optional. The location of the HostPool. If provided, the function will look for the HostPool in the specified 
+location.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -HostPoolType
+Optional. The type of HostPool to look for. If provided, the function will look for the HostPool with the specified 
+type.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoadBalancerType
+Optional. The type of Load Balancer to look for. If provided, the function will look for the HostPool with the 
+specified Load Balancer type.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MaxSessionLimit
+Optional. The maximum number of sessions allowed in the HostPool. If provided, the function will check that the 
+HostPool has the same MaxSessionLimit.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PreferredAppGroupType
+Optional. The preferred App Group type for the HostPool. If provided, the function will check that the HostPool has 
+the same PreferredAppGroupType.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 7
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

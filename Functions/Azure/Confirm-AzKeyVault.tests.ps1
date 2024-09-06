@@ -16,6 +16,8 @@ Describe 'Confirm-AzKeyVault Integration Tests' -Tag 'Integration', 'Azure' {
         New-AzKeyVault -ResourceGroupName $rgName -VaultName $testKeyVaultName -Location $location | Out-Null
 
         # Set access policy for the Key Vault
+        $currentContext = Get-AzContext
+        $userPrincipalName = $currentContext.Account.Id        
         Set-AzKeyVaultAccessPolicy `
             -ResourceGroupName $rgName `
             -VaultName $testKeyVaultName `
