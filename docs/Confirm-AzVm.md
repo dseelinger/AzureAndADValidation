@@ -27,8 +27,73 @@ otherwise returns $false.
 
 ### EXAMPLE 1
 ```
-Confirm-AzVm -VmName "MyVm01" -ResourceGroupName "MyResourceGroup01"
-Returns $true or $false
+# Check if a Virtual Machine named "MyVM01" exists in the resource group "MyResourceGroup01"
+Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01"
+```
+
+### EXAMPLE 2
+```
+# How to use the Location parameter
+Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01" -Location "East US"
+```
+
+### EXAMPLE 3
+```
+# How to use the VMSize parameter
+Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01" -VMSize "Standard_DS1_v2"
+```
+
+### EXAMPLE 4
+```
+# How to use the OsType parameter
+Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01" -OsType "Windows"
+```
+
+### EXAMPLE 5
+```
+# How to use the SourceImagePublisherName parameter
+Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01" `
+    -SourceImagePublisherName "MicrosoftWindowsServer"
+```
+
+### EXAMPLE 6
+```
+# How to use the SourceImageOffer parameter
+Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01" -SourceImageOffer "WindowsServer"
+```
+
+### EXAMPLE 7
+```
+# How to use the SourceImageSku parameter
+Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01" -SourceImageSku "2019-Datacenter"
+```
+
+### EXAMPLE 8
+```
+# How to use the SourceImageVersion parameter
+Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01" -SourceImageVersion "latest"
+```
+
+### EXAMPLE 9
+```
+# Check if a Virtual Machine named "MyVM01" exists in the resource group "MyResourceGroup01" and store the result in 
+# a variable.
+$exists = Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01"
+if ($exists) {
+    Write-Output "MyVM01 exists in the MyResourceGroup01 Resource Group."
+} else {
+    Write-Output "MyVM01 does not exist in the MyResourceGroup01 Resource Group."
+}
+```
+
+### EXAMPLE 10
+```
+# How to use this in a Pester test
+Describe "MyVM01 Virtual Machine" {
+    It "Should exist in the MyResourceGroup01 Resource Group" {
+        Confirm-AzVm -VmName "MyVM01" -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS
@@ -64,7 +129,9 @@ Accept wildcard characters: False
 ```
 
 ### -Location
-Optional. The location of the Virtual Machine. If provided, the function will look for the Virtual Machine in the 
+Optional.
+The location of the Virtual Machine.
+If provided, the function will look for the Virtual Machine in the 
 specified location.
 
 ```yaml
@@ -80,7 +147,9 @@ Accept wildcard characters: False
 ```
 
 ### -VMSize
-Optional. The size of the Virtual Machine. If provided, the function will look for the Virtual Machine with the
+Optional.
+The size of the Virtual Machine.
+If provided, the function will look for the Virtual Machine with the
 specified size.
 
 ```yaml
@@ -96,7 +165,9 @@ Accept wildcard characters: False
 ```
 
 ### -OsType
-Optional. The OS type of the Virtual Machine. If provided, the function will look for the Virtual Machine with the
+Optional.
+The OS type of the Virtual Machine.
+If provided, the function will look for the Virtual Machine with the
 specified OS type.
 
 ```yaml
@@ -112,7 +183,9 @@ Accept wildcard characters: False
 ```
 
 ### -SourceImagePublisherName
-Optional. The publisher name of the source image of the Virtual Machine. If provided, the function will look for the
+Optional.
+The publisher name of the source image of the Virtual Machine.
+If provided, the function will look for the
 Virtual Machine with the specified source image publisher name.
 
 ```yaml
@@ -128,7 +201,9 @@ Accept wildcard characters: False
 ```
 
 ### -SourceImageOffer
-Optional. The offer of the source image of the Virtual Machine. If provided, the function will look for the Virtual
+Optional.
+The offer of the source image of the Virtual Machine.
+If provided, the function will look for the Virtual
 Machine with the specified source image offer.
 
 ```yaml
@@ -144,7 +219,9 @@ Accept wildcard characters: False
 ```
 
 ### -SourceImageSku
-Optional. The SKU of the source image of the Virtual Machine. If provided, the function will look for the Virtual
+Optional.
+The SKU of the source image of the Virtual Machine.
+If provided, the function will look for the Virtual
 Machine with the specified source image SKU.
 
 ```yaml
@@ -160,7 +237,9 @@ Accept wildcard characters: False
 ```
 
 ### -SourceImageVersion
-Optional. The version of the source image of the Virtual Machine. If provided, the function will look for the Virtual
+Optional.
+The version of the source image of the Virtual Machine.
+If provided, the function will look for the Virtual
 Machine with the specified source image version.
 
 ```yaml

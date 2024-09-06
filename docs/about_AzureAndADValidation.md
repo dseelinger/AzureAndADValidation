@@ -4,13 +4,6 @@
 # SHORT DESCRIPTION
 This PowerShell module provides a set of cmdlets for confirming that Azure and Active Directory resources have been provisioned correctly. It includes functions to validate the existence and configuration of various Azure resources, such as Network Security Groups (NSGs), role assignments, and resource group deployments.
 
-```
-ABOUT TOPIC NOTE:
-About topics can be no longer than 80 characters wide when rendered to text.
-Any topics greater than 80 characters will be automatically wrapped.
-The generated about topic will be encoded UTF-8.
-```
-
 # LONG DESCRIPTION
 AzureAndADValidation contains several cmdlets/functions to confirm that Azure resources or AD Objects or individual machine resources are as they should be. These are the functions supported:
 
@@ -107,9 +100,11 @@ Test-MappedDrive -DriveLetter "Z"
 ```
 
 # NOTE
-These examples demonstrate how to use the cmdlets provided by the AzureAndADValidation module to confirm the existence and configuration of various Azure and Active Directory resources.
+These simple examples demonstrate how to use the cmdlets provided by the AzureAndADValidation module to confirm the existence and configuration of various Azure and Active Directory resources.
 
-# TROUBLESHOOTING NOTE
+More detailed examples are given in each of the functions help text, including how to perform more detailed confirmations than simply the existence of an object or resource.
+
+# TROUBLESHOOTING NOTES
 
 ## Common Issues and Solutions
 

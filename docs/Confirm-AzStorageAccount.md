@@ -24,8 +24,31 @@ Confirm-AzStorageAccount [-StorageAccountName] <String> [-ResourceGroupName] <St
 
 ### EXAMPLE 1
 ```
-Confirm-AzStorageAccount -StorageAccountName "MyStorageAccount01" -ResourceGroupName "MyResourceGroup01"
-Returns $true or $false
+# Check if a Storage Account named "MyStorageAccount" exists in the resource group "MyResourceGroup"
+Confirm-AzStorageAccount -StorageAccountName "MyStorageAccount" -ResourceGroupName "MyResourceGroup"
+```
+
+### EXAMPLE 2
+```
+# Check if a Storage Account named "MyStorageAccount" exists in the resource group "MyResourceGroup" and store the 
+# result in a variable.
+$exists = Confirm-AzStorageAccount -StorageAccountName "MyStorageAccount" -ResourceGroupName "MyResourceGroup"
+if ($exists) {
+    Write-Output "MyStorageAccount exists in the MyResourceGroup Resource Group."
+} else {
+    Write-Output "MyStorageAccount does not exist in the MyResourceGroup Resource Group."
+}
+```
+
+### EXAMPLE 3
+```
+# How to use this in a Pester test
+Describe "MyStorageAccount Storage Account" {
+    It "Should exist in the MyResourceGroup Resource Group" {
+        Confirm-AzStorageAccount -StorageAccountName "MyStorageAccount" -ResourceGroupName "MyResourceGroup" `
+            | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS

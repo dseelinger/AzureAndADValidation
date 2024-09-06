@@ -27,42 +27,83 @@ configuration, otherwise it returns $false.
 
 ### EXAMPLE 1
 ```
-Confirm-AzNsgRule -Name "MyNsgRule" -ResourceGroupName "MyResourceGroup" -NsgName "MyNsg"
-Returns $true or $false
+# Check if an NSG rule named "MyNsgRule01" exists in the resource group "MyResourceGroup01" in the NSG "MyNsg01"
+Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01"
 ```
 
 ### EXAMPLE 2
 ```
-$ruleExists = Confirm-AzNsgRule -Name "AllowSSH" -ResourceGroupName "ProdResourceGroup" -NsgName "ProdNsg"
-if ($ruleExists) {
-    Write-Output "The NSG rule 'AllowSSH' exists in the 'ProdNsg' NSG."
+# Check if an NSG rule named "MyNsgRule01" exists in the resource group "MyResourceGroup01" in the NSG "MyNsg01" and
+# store the result in a variable.
+$exists = Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01"
+if ($exists) {
+    Write-Output "MyNsgRule01 exists in the MyResourceGroup01 Resource Group."
 } else {
-    Write-Output "The NSG rule 'AllowSSH' does not exist in the 'ProdNsg' NSG."
+    Write-Output "MyNsgRule01 does not exist in the MyResourceGroup01 Resource Group."
 }
-Checks if the NSG rule "AllowSSH" exists in the "ProdNsg" NSG and outputs a message accordingly.
 ```
 
 ### EXAMPLE 3
 ```
-$result = Confirm-AzNsgRule -Name "DenyAll" -ResourceGroupName "TestResourceGroup" -NsgName "TestNsg"
-Write-Output "NSG rule existence: $result"
-Stores the result of the NSG rule existence check in a variable and outputs the result.
+# Check with a specific priority
+Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01" -Priority 100
 ```
 
 ### EXAMPLE 4
 ```
-if (Confirm-AzNsgRule -Name "AllowHTTP" -ResourceGroupName "WebResourceGroup" -NsgName "WebNsg") {
-    Write-Output "NSG rule 'AllowHTTP' found."
-} else {
-    Write-Output "NSG rule 'AllowHTTP' not found."
-}
-Directly checks the existence of the NSG rule "AllowHTTP" in the "WebNsg" NSG and outputs a message.
+# Check with a specific SourceAddressPrefix
+Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01" `
+    -SourceAddressPrefix '192.168.1.0/24'
 ```
 
 ### EXAMPLE 5
 ```
-Confirm-AzNsgRule -Name "AllowRDP" -ResourceGroupName "RemoteAccessGroup" -NsgName "RemoteAccessNsg" -Protocol "TCP" -SourceAddressPrefix "10.0.0.0/24" -DestinationPortRange "3389"
-Checks if the NSG rule "AllowRDP" with specific protocol, source address prefix, and destination port range exists in the "RemoteAccessNsg" NSG.
+# Check with a specific SourcePortRange
+Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01" `
+    -SourcePortRange "80"
+```
+
+### EXAMPLE 6
+```
+# Check with a specific DestinationAddressPrefix
+Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01" `
+    -DestinationAddressPrefix '
+```
+
+### EXAMPLE 7
+```
+# Check with a specific DestinationPortRange
+Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01" `
+    -DestinationPortRange "80"
+```
+
+### EXAMPLE 8
+```
+# Check with a specific Protocol
+Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01" -Protocol "TCP"
+```
+
+### EXAMPLE 9
+```
+# Check with a specific Access
+Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01" -Access "Allow"
+```
+
+### EXAMPLE 10
+```
+# Check with a specific Direction
+Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01" -Direction "Inbound"
+```
+
+### EXAMPLE 11
+```
+# How to use this in a Pester test
+Describe "MyNsgRule01 NSG Rule" {
+    It "Should exist in the MyResourceGroup01 Resource Group" {
+        Confirm-AzNsgRule -Name "MyNsgRule01" -ResourceGroupName "MyResourceGroup01" -NsgName "MyNsg01" `
+            | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS

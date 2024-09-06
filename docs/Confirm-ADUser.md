@@ -23,8 +23,29 @@ The Confirm-ADUser function takes a user name as input and returns $true if it i
 
 ### EXAMPLE 1
 ```
+# Check if a user named "MySAMAccountName01" exists in AD
 Confirm-ADUser -Name "MySAMAccountName01"
-Returns $true or $false
+```
+
+### EXAMPLE 2
+```
+# Check if a user named "jdoe" exists in AD and store the result in a variable
+$exists = Confirm-ADUser -Name "jdoe"
+if ($exists) {
+    Write-Output "User jdoe exists in Active Directory."
+} else {
+    Write-Output "User jdoe does not exist in Active Directory."
+}
+```
+
+### EXAMPLE 3
+```
+# How to use this in a Pester test
+Describe "jdoe User" {
+    It "Should exist at this point" {
+        Confirm-ADUser -Name "jdoe" | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS

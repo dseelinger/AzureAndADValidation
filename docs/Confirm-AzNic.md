@@ -25,36 +25,35 @@ otherwise returns $false.
 
 ### EXAMPLE 1
 ```
+# Check if a NIC named "MyNic01" exists in the resource group "MyResourceGroup01"
 Confirm-AzNic -NicName "MyNic01" -ResourceGroupName "MyResourceGroup01"
-Returns $true or $false
 ```
 
 ### EXAMPLE 2
 ```
-$nicExists = Confirm-AzNic -NicName "WebServerNic" -ResourceGroupName "WebResourceGroup"
-if ($nicExists) {
-    Write-Output "The NIC 'WebServerNic' exists in the 'WebResourceGroup' resource group."
+# Check if a NIC named "MyNic01" exists in the resource group "MyResourceGroup01" and store the result in a variable.
+$exists = Confirm-AzNic -NicName "MyNic01" -ResourceGroupName "MyResourceGroup01"
+if ($exists) {
+    Write-Output "MyNic01 exists in the MyResourceGroup01 Resource Group."
 } else {
-    Write-Output "The NIC 'WebServerNic' does not exist in the 'WebResourceGroup' resource group."
+    Write-Output "MyNic01 does not exist in the MyResourceGroup01 Resource Group."
 }
-Checks if the NIC "WebServerNic" exists in the "WebResourceGroup" and outputs a message accordingly.
 ```
 
 ### EXAMPLE 3
 ```
-$result = Confirm-AzNic -NicName "DatabaseNic" -ResourceGroupName "DatabaseResourceGroup"
-Write-Output "NIC existence: $result"
-Stores the result of the NIC existence check in a variable and outputs the result.
+# Check with a specific location
+Confirm-AzNic -NicName "MyNic01" -ResourceGroupName "MyResourceGroup01" -Location "eastus"
 ```
 
 ### EXAMPLE 4
 ```
-if (Confirm-AzNic -NicName "AppServerNic" -ResourceGroupName "AppResourceGroup") {
-    Write-Output "NIC 'AppServerNic' found."
-} else {
-    Write-Output "NIC 'AppServerNic' not found."
+# How to use this in a Pester test
+Describe "MyNic01 Network Interface Card" {
+    It "Should exist in the MyResourceGroup01 Resource Group" {
+        Confirm-AzNic -NicName "MyNic01" -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+    }
 }
-Directly checks the existence of the NIC "AppServerNic" in the "AppResourceGroup" and outputs a message.
 ```
 
 ## PARAMETERS
@@ -90,7 +89,9 @@ Accept wildcard characters: False
 ```
 
 ### -Location
-Optional. The location of the NIC. If provided, the function will look for the NIC in the specified location.
+Optional.
+The location of the NIC.
+If provided, the function will look for the NIC in the specified location.
 
 ```yaml
 Type: String

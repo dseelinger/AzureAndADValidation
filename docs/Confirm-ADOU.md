@@ -24,8 +24,29 @@ returns $false.
 
 ### EXAMPLE 1
 ```
+# Check if an OU named "YourOU" exists in AD
 Confirm-ADOU -OUDN "OU=YourOU,DC=YourDomain,DC=com"
-Returns $true if found or $false if not found
+```
+
+### EXAMPLE 2
+```
+# Check if an OU named "Sales" exists in AD and store the result in a variable
+$exists = Confirm-ADOU -OUDN "OU=Sales,DC=YourDomain,DC=com"
+if ($exists) {
+    Write-Output "Sales OU exists in Active Directory."
+} else {
+    Write-Output "Sales OU does not exist in Active Directory."
+}
+```
+
+### EXAMPLE 3
+```
+# How to use this in a Pester test, checking that an OU that should exist actually does
+Describe "Sales OU" {
+    It "Should exists" {
+        Confirm-ADOU -OUDN "OU=Sales,DC=YourDomain,DC=com" | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS

@@ -17,25 +17,42 @@ Confirm-AzResourceGroup [-ResourceGroupName] <String> [-ProgressAction <ActionPr
 ```
 
 ## DESCRIPTION
-The Confirm-AzResourceGroup function takes the name of an Azure Resource Group as input and returns $true if it is found,
-otherwise returns $false.
+The Confirm-AzResourceGroup function takes the name of an Azure Resource Group as input and returns $true if it is 
+found, otherwise returns $false.
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+# Check if a Resource Group named "MyResourceGroup01" exists
+Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01"
 ```
 
-{{ Add example description here }}
+### EXAMPLE 2
+```
+# Check if a Resource Group named "MyResourceGroup01" exists and store the result in a variable.
+$exists = Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01"
+if ($exists) {
+    Write-Output "MyResourceGroup01 exists."
+} else {
+    Write-Output "MyResourceGroup01 does not exist."
+}
+```
+
+### EXAMPLE 3
+```
+# How to use this in a Pester test
+Describe "MyResourceGroup01 Resource Group" {
+    It "Should exist" {
+        Confirm-AzResourceGroup -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+    }
+}
+```
 
 ## PARAMETERS
 
 ### -ResourceGroupName
 The name of the Resource Group to look for.
-
-Confirm-AzResourceGroup -Name "MyResourceGroup01"
-Returns $true or $false
 
 ```yaml
 Type: String

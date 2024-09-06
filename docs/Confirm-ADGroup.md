@@ -17,14 +17,36 @@ Confirm-ADGroup [-Name] <String> [-ProgressAction <ActionPreference>] [<CommonPa
 ```
 
 ## DESCRIPTION
-The Confirm-ADGroup function takes a group name as input and returns $true if it is found, otherwise it returns $false.
+The Confirm-ADGroup function takes a group name as input and returns $true if it is found, otherwise it returns 
+$false.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
+# Check if a group named "MyGroup01" exists in AD
 Confirm-ADGroup -Name "MyGroup01"
-Returns $true or $false
+```
+
+### EXAMPLE 2
+```
+# Check if a group named "Admins" exists in AD and store the result in a variable
+$exists = Confirm-ADGroup -Name "Admins"
+if ($exists) {
+    Write-Output "Admins group exists in Active Directory."
+} else {
+    Write-Output "Admins group does not exist in Active Directory."
+}
+```
+
+### EXAMPLE 3
+```
+# How to use this in a Pester test
+Describe "Foo Group" {
+    It "Should exist at this point" {
+        Confirm-ADGroup -Name "Foo" | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS

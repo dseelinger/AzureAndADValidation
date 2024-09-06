@@ -24,8 +24,28 @@ returns $false.
 
 ### EXAMPLE 1
 ```
+# Check if a computer named "VirtualMachine01" exists in Active Directory
 Confirm-ADComputer -Name "VirtualMachine01"
-Returns $true if found or $false if not found
+```
+
+### EXAMPLE 2
+```
+# Use the result in a script to perform an action if the computer exists
+if (Confirm-ADComputer -Name "VirtualMachine01") {
+    Write-Output "Computer VirtualMachine01 exists in Active Directory."
+} else {
+    Write-Output "Computer VirtualMachine01 does not exist in Active Directory."
+}
+```
+
+### EXAMPLE 3
+```
+# Use in a Pester Test
+Describe "VirtualMachine01" {
+    It "Should exist" {
+        Confirm-ADComputer -Name "VirtualMachine01" | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS

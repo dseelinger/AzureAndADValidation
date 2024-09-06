@@ -19,15 +19,52 @@ Confirm-AzApplicationGroup [-ApplicationGroupName] <String> [-ResourceGroupName]
 ```
 
 ## DESCRIPTION
-The Confirm-AzApplicationGroup function takes the name of an ApplicationGroup as input and returns $true if it is found,
-otherwise returns $false.
+The Confirm-AzApplicationGroup function takes the name of an ApplicationGroup as input and returns $true if it is 
+found, otherwise returns $false.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Confirm-AzApplicationGroup -Name "MyWvdAppGroup"
-Returns $true or $false
+# Check if an ApplicationGroup named "MyWvdAppGroup" exists in the "MyResourceGroup" Resource Group
+Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup"
+```
+
+### EXAMPLE 2
+```
+# Check if an ApplicationGroup named "MyWvdAppGroup" exists in the "MyResourceGroup" Resource Group and store the
+# result in a variable
+$exists = Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup"
+if ($exists) {
+    Write-Output "MyWvdAppGroup exists in the MyResourceGroup Resource Group."
+} else {
+    Write-Output "MyWvdAppGroup does not exist in the MyResourceGroup Resource Group."
+}
+```
+
+### EXAMPLE 3
+```
+# Check with a specific location
+Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" `
+    -Location "eastus"
+```
+
+### EXAMPLE 4
+```
+# Check with a specific ApplicationGroupType
+Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" `
+    -ApplicationGroupType "DesktopApplicationGroup"
+```
+
+### EXAMPLE 5
+```
+# How to use this in a Pester test
+Describe "MyWvdAppGroup Application Group" {
+    It "Should exist in the MyResourceGroup Resource Group" {
+        Confirm-AzApplicationGroup -ApplicationGroupName "MyWvdAppGroup" -ResourceGroupName "MyResourceGroup" `
+            | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS
@@ -63,7 +100,8 @@ Accept wildcard characters: False
 ```
 
 ### -Location
-The location where the ApplicationGroup is expected to be. If not specified, the location check will be skipped.
+The location where the ApplicationGroup is expected to be.
+If not specified, the location check will be skipped.
 
 ```yaml
 Type: String
@@ -78,7 +116,8 @@ Accept wildcard characters: False
 ```
 
 ### -ApplicationGroupType
-The type of the ApplicationGroup. If not specified, the type check will be skipped.
+The type of the ApplicationGroup.
+If not specified, the type check will be skipped.
 
 ```yaml
 Type: String

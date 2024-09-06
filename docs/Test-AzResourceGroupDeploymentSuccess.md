@@ -25,42 +25,32 @@ and returns $true if the deployment was successful, otherwise returns $false.
 
 ### EXAMPLE 1
 ```
+# Check if a deployment named "MyDeployment01" was successful in the resource group "MyResourceGroup01"
 Test-AzResourceGroupDeploymentSuccess -DeploymentName "MyDeployment01" -ResourceGroupName "MyResourceGroup01"
-Returns $true or $false
 ```
 
 ### EXAMPLE 2
 ```
-$deploymentSuccess = Test-AzResourceGroupDeploymentSuccess -DeploymentName "WebAppDeployment" -ResourceGroupName "WebAppResourceGroup"
-if ($deploymentSuccess) {
-    Write-Output "The deployment 'WebAppDeployment' was successful."
+# Check if a deployment named "MyDeployment01" was successful in the resource group "MyResourceGroup01" and store the 
+# result in a variable.
+$success = Test-AzResourceGroupDeploymentSuccess -DeploymentName "MyDeployment01" -ResourceGroupName `
+    "MyResourceGroup01"
+if ($success) {
+    Write-Output "MyDeployment01 was successful in the MyResourceGroup01 Resource Group."
 } else {
-    Write-Output "The deployment 'WebAppDeployment' failed."
+    Write-Output "MyDeployment01 was not successful in the MyResourceGroup01 Resource Group."
 }
-Checks if the deployment "WebAppDeployment" in the "WebAppResourceGroup" was successful and outputs a message accordingly.
 ```
 
 ### EXAMPLE 3
 ```
-$result = Test-AzResourceGroupDeploymentSuccess -DeploymentName "DatabaseDeployment" -ResourceGroupName "DatabaseResourceGroup"
-Write-Output "Deployment success: $result"
-Stores the result of the deployment success check in a variable and outputs the result.
-```
-
-### EXAMPLE 4
-```
-if (Test-AzResourceGroupDeploymentSuccess -DeploymentName "NetworkDeployment" -ResourceGroupName "NetworkResourceGroup") {
-    Write-Output "Deployment 'NetworkDeployment' was successful."
-} else {
-    Write-Output "Deployment 'NetworkDeployment' failed."
+# How to use this in a Pester test
+Describe "MyDeployment01 Deployment" {
+    It "Should be successful in the MyResourceGroup01 Resource Group" {
+        Test-AzResourceGroupDeploymentSuccess -DeploymentName "MyDeployment01" -ResourceGroupName `
+            "MyResourceGroup01" | Should -Be $true
+    }
 }
-Directly checks the success of the deployment "NetworkDeployment" in the "NetworkResourceGroup" and outputs a message.
-```
-
-### EXAMPLE 5
-```
-Test-AzResourceGroupDeploymentSuccess -DeploymentName "StorageDeployment" -ResourceGroupName "StorageResourceGroup"
-Checks if the deployment "StorageDeployment" in the "StorageResourceGroup" was successful and returns $true or $false.
 ```
 
 ## PARAMETERS

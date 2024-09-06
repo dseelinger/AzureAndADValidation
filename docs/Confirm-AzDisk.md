@@ -25,8 +25,36 @@ otherwise returns $false.
 
 ### EXAMPLE 1
 ```
-Confirm-AzDisk -Name "MyDisk01" -ResourceGroupName "MyResourceGroup01"
-Returns $true or $false
+# Check if a disk named "MyDisk01" exists in the resource group "MyResourceGroup01"
+Confirm-AzDisk -DiskName "MyDisk01" -ResourceGroupName "MyResourceGroup01"
+```
+
+### EXAMPLE 2
+```
+# How to use the DiskSizeGB parameter
+Confirm-AzDisk -DiskName "MyDisk01" -ResourceGroupName "MyResourceGroup01" -DiskSizeGB 128
+```
+
+### EXAMPLE 3
+```
+# Check if a disk named "MyDisk01" exists in the resource group "MyResourceGroup01" and store the result in a
+# variable.
+$exists = Confirm-AzDisk -DiskName "MyDisk01" -ResourceGroupName "MyResourceGroup01"
+if ($exists) {
+    Write-Output "MyDisk01 exists in the MyResourceGroup01 Resource Group."
+} else {
+    Write-Output "MyDisk01 does not exist in the MyResourceGroup01 Resource Group."
+}
+```
+
+### EXAMPLE 4
+```
+# How to use this in a Pester test
+Describe "MyDisk01 Disk" {
+    It "Should exist in the MyResourceGroup01 Resource Group" {
+        Confirm-AzDisk -DiskName "MyDisk01" -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS

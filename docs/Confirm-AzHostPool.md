@@ -26,8 +26,62 @@ otherwise returns $false.
 
 ### EXAMPLE 1
 ```
-Confirm-AzHostPool -Name "MyHostPool01"
-Returns $true or $false
+# Check if a HostPool named "MyHostPool01" exists in the resource group "MyResourceGroup01"
+Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01"
+```
+
+### EXAMPLE 2
+```
+# Check if a HostPool named "MyHostPool01" exists in the resource group "MyResourceGroup01" and store the result in 
+# a variable.
+$exists = Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01"
+if ($exists) {
+    Write-Output "MyHostPool01 exists in the MyResourceGroup01 Resource Group."
+} else {
+    Write-Output "MyHostPool01 does not exist in the MyResourceGroup01 Resource Group."
+}
+```
+
+### EXAMPLE 3
+```
+# Check with a specific location
+Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" -Location "eastus"
+```
+
+### EXAMPLE 4
+```
+# Check with a specific HostPoolType
+Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" -HostPoolType "Pooled"
+```
+
+### EXAMPLE 5
+```
+# Check with a specific LoadBalancerType
+Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" `
+    -LoadBalancerType "BreadthFirst"
+```
+
+### EXAMPLE 6
+```
+# Check with a specific MaxSessionLimit
+Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" -MaxSessionLimit 10
+```
+
+### EXAMPLE 7
+```
+# Check with a specific PreferredAppGroupType
+Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" `
+    -PreferredAppGroupType "Desktop"
+```
+
+### EXAMPLE 8
+```
+# How to use this in a Pester test
+Describe "MyHostPool01 Host Pool" {
+    It "Should exist in the MyResourceGroup01 Resource Group" {
+        Confirm-AzHostPool -HostPoolName "MyHostPool01" -ResourceGroupName "MyResourceGroup01" | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS
@@ -63,7 +117,9 @@ Accept wildcard characters: False
 ```
 
 ### -Location
-Optional. The location of the HostPool. If provided, the function will look for the HostPool in the specified 
+Optional.
+The location of the HostPool.
+If provided, the function will look for the HostPool in the specified 
 location.
 
 ```yaml
@@ -79,7 +135,9 @@ Accept wildcard characters: False
 ```
 
 ### -HostPoolType
-Optional. The type of HostPool to look for. If provided, the function will look for the HostPool with the specified 
+Optional.
+The type of HostPool to look for.
+If provided, the function will look for the HostPool with the specified 
 type.
 
 ```yaml
@@ -95,7 +153,9 @@ Accept wildcard characters: False
 ```
 
 ### -LoadBalancerType
-Optional. The type of Load Balancer to look for. If provided, the function will look for the HostPool with the 
+Optional.
+The type of Load Balancer to look for.
+If provided, the function will look for the HostPool with the 
 specified Load Balancer type.
 
 ```yaml
@@ -111,7 +171,9 @@ Accept wildcard characters: False
 ```
 
 ### -MaxSessionLimit
-Optional. The maximum number of sessions allowed in the HostPool. If provided, the function will check that the 
+Optional.
+The maximum number of sessions allowed in the HostPool.
+If provided, the function will check that the 
 HostPool has the same MaxSessionLimit.
 
 ```yaml
@@ -127,7 +189,9 @@ Accept wildcard characters: False
 ```
 
 ### -PreferredAppGroupType
-Optional. The preferred App Group type for the HostPool. If provided, the function will check that the HostPool has 
+Optional.
+The preferred App Group type for the HostPool.
+If provided, the function will check that the HostPool has 
 the same PreferredAppGroupType.
 
 ```yaml

@@ -13,25 +13,43 @@ Tests for the presence of an installation of the Azure CLI.
 ## SYNTAX
 
 ```
-Confirm-AzureCliInstalled [<CommonParameters>]
+Confirm-AzureCliInstalled
 ```
 
 ## DESCRIPTION
-The Confirm-AzureCliInstalled function tests the current machine to see if the Azure CLI has been installed and returns 
-$true if it is found, otherwise returns $false.
+The Confirm-AzureCliInstalled function tests the current machine to see if the Azure CLI has been installed and 
+returns $true if it is found, otherwise returns $false.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
+# Check if the Azure CLI is installed
 Confirm-AzureCliInstalled
-Returns $true or $false
+```
+
+### EXAMPLE 2
+```
+# Check if the Azure CLI is installed and store the result in a variable.
+$exists = Confirm-AzureCliInstalled
+if ($exists) {
+    Write-Output "The Azure CLI is installed."
+} else {
+    Write-Output "The Azure CLI is not installed."
+}
+```
+
+### EXAMPLE 3
+```
+# How to use this in a Pester test
+Describe "Azure CLI" {
+    It "Should be installed" {
+        Confirm-AzureCliInstalled | Should -Be $true
+    }
+}
 ```
 
 ## PARAMETERS
-
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
