@@ -14,17 +14,6 @@ Describe 'Confirm-AzKeyVault Integration Tests' -Tag 'Integration', 'Azure' {
 
         # Create a new Azure Key Vault
         New-AzKeyVault -ResourceGroupName $rgName -VaultName $testKeyVaultName -Location $location | Out-Null
-
-        # Set access policy for the Key Vault
-        $currentContext = Get-AzContext
-        $userPrincipalName = $currentContext.Account.Id        
-        Set-AzKeyVaultAccessPolicy `
-            -ResourceGroupName $rgName `
-            -VaultName $testKeyVaultName `
-            -PermissionsToKeys get, list, update, create, delete, recover, backup, restore, import, purge `
-            -PermissionsToSecrets get, list, set, delete, recover, backup, restore, purge `
-            -PermissionsToCertificates get, list, update, create, import, delete, recover, backup, restore, purge `
-            -UserPrincipalName $userPrincipalName | Out-Null
     }
     
     Context 'When the KeyVault exists' {
