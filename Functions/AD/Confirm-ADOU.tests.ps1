@@ -46,7 +46,7 @@ Describe 'Confirm-ADOU Unit Tests' -Tag 'Unit', 'AD' {
         It 'returns $true' {
             # Arrange
             $realOUName = 'OU=YourOU,DC=YourDomain,DC=com'
-            function Get-ADOrganizationalUnit {}
+            function Get-ADObject {}
 
             # Act
             $result = Confirm-ADOU -OUDN $realOUName
@@ -60,7 +60,7 @@ Describe 'Confirm-ADOU Unit Tests' -Tag 'Unit', 'AD' {
         It 'returns $false' {
             # Arrange
             $fakeOUName = 'OU=thisOU,DC=DoesNotExist,DC=com'
-            function Get-ADOrganizationalUnit { throw 'Exception'}
+            function Get-ADObject { throw 'Exception'}
 
             # Act
             $result = Confirm-ADOU -OUDN $fakeOUName

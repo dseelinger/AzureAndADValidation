@@ -1,6 +1,24 @@
 BeforeAll {
     . $PSScriptRoot\Test-ADGroupMembership.ps1
 
+    function Get-GroupWithoutMembers {
+        # Get all groups in AD
+        $allGroups = Get-ADGroup -Filter *
+    
+        # Iterate through each group and check if it has members
+        foreach ($group in $allGroups) {
+            try {
+                $members = Get-ADGroupMember -Identity $group -ErrorAction Stop
+                if ($members.Count -eq 0) {
+                    return $group
+                }
+            } catch {
+                # Handle any errors (e.g., group does not exist or no permissions)
+                continue
+            }
+        }
+    }
+
     function Get-GroupWithMembers {
         # Get all groups in AD
         $allGroups = Get-ADGroup -Filter *
@@ -45,7 +63,7 @@ Describe 'Test-ADGroupMembership Integration Tests' -Tag 'Integration', 'AD', 'A
         It 'returns $false' {
             # Arrange
             $me = $env:USERNAME
-            $randomGroup = Get-GroupWithMembers
+            $randomGroup = Get-GroupWithoutMembers
 
             # Act
             $result = Test-ADGroupMembership -GroupName $randomGroup -MemberName $me

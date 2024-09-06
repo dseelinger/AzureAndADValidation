@@ -44,7 +44,7 @@ function Confirm-ADOU {
     }
     process {
         try {
-            Get-ADOrganizationalUnit -Identity $OUDN -ErrorAction Stop | Out-Null
+            Get-ADObject -Identity $OUDN -ErrorAction Stop | Out-Null
             $true
         } catch {
             $false
