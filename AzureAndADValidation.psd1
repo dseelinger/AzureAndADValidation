@@ -13,7 +13,7 @@
 RootModule = 'AzureAndADValidation'
 
 # Version number of this module.
-ModuleVersion = '1.0.5'
+ModuleVersion = '1.0.10'
 
 # Supported PSEditions
 # CompatiblePSEditions = @('Core')
@@ -174,6 +174,7 @@ HelpInfoURI = 'https://github.com/dseelinger/AzureAndADValidation/blob/main/en-U
 # DefaultCommandPrefix = ''
 
 }
+
 
 
 
